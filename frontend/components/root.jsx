@@ -5,10 +5,10 @@ import App from './app';
 
 export default ({ store }) => {
   return (
-    <div>
-      <Provider store={store}>
+    <Provider store={store}>
+      <HashRouter>
         <App />
-      </Provider>
-    </div>
+      </HashRouter>
+    </Provider>
   );
 };

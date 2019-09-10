@@ -12,15 +12,16 @@ export default class SessionForm extends React.Component {
 
   handleInput(type) {
     return (e) => {
-      this.setState({ [type]: e.target.value })
+      this.setState({ [type]: e.target.value });
     };
   }
 
   handleSubmit(e) {
     e.preventDefault();
-
     this.props.processForm(Object.assign({}, this.state))
-      .then(() => alert("account created"));
+      .then(() => { 
+        this.props.history.push("/"); 
+      });
   }
 
   render() {
@@ -29,16 +30,16 @@ export default class SessionForm extends React.Component {
         <label>
           Username:
           <input type="text" onChange={this.handleInput.bind(this)("username")} />
-        </label>
+        </label> <br/>
         <label>
           Password:
           <input type="password" onChange={this.handleInput.bind(this)("password")} />
-        </label>
+        </label> <br />
         <label>
           Email:
           <input type="text" onChange={this.handleInput.bind(this)("email")} />
-        </label>
-        <button onClick={this.handleSubmit.bind(this)}>{this.props.buttonText}</button>
+        </label> <br />
+        <button onClick={this.handleSubmit.bind(this)}>Sign Up</button>
       </form>
     );
   }
