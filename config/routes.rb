@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   namespace :api, defaults: {format: :json} do
     resources :users
     resource :sessions
-    resources :benches
+    resources :questions
   end
   
 end

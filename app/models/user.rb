@@ -2,8 +2,9 @@ class User < ApplicationRecord
   validates :username, :password_digest, :session_token, :email, presence: true
   validates :password, length: { minimum: 6, allow_nil: true }
 
+  has_many(:questions, foreign_key: :author_id, class_name: :Question)
   attr_reader :password
-
+  
   after_initialize :ensure_session_token
 
   def password=(password)

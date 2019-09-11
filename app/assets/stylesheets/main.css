@@ -4,12 +4,12 @@ html, body { height: 100%; width: 100%; margin: 0; }
   height: 100%;
 }
 
-.body {
-  display: flex;
+body {
+  /* display: flex; */
   height: 94%;
   width: 100%;
   margin: 0;
   background: #EAEAEA;
-  display: block;
-    text-align: center;
+  /* display: block; */
+  text-align: center;
 }

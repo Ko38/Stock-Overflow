@@ -9,11 +9,23 @@
   margin: 0;
 }
 
+.burger, .rightLi{
+  width: 10%;
+}
+
+.logoLi{
+  width: 20%;
+}
+
+.searchLi{
+  width: 40%;
+}
 
 li {
   height: 100%;
-  width: 10%;
+  
   float: left;
+  margin-right: 10px;
 }
 
 li a {
@@ -28,7 +40,7 @@ li a {
 .aButton {
   margin-top: 10%;
   padding: 10px 10px 10px 10px;
-  border-radius: 5px;
+  border-radius: 10px;
   cursor: pointer;
   height: 40%;
   width: 80%;

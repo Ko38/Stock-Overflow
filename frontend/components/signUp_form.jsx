@@ -26,7 +26,7 @@ export default class SessionForm extends React.Component {
 
   render() {
     return (
-      <form onSubmit={this.handleSubmit.bind(this)}>
+      <form className="formBody" onSubmit={this.handleSubmit.bind(this)}>
         <label>
           <b>Username:</b>
           <input type="text" onChange={this.handleInput.bind(this)("username")} />

@@ -1,17 +1,9 @@
-import { RECEIVE_CURRENT_USER } from '../actions/session_actions'
+import { combineReducers } from 'redux';
+import usersReducer from "./users_reducer";
+import questionsReducer from "./questions_reducer";
 
-const entitiesReducer = (state = {}, action) => {
-  Object.freeze(state);
-  switch (action.type) {
-    case RECEIVE_CURRENT_USER:
-      return { 
-        users: {
-          [action.currentUser.id]: action.currentUser
-        }
-      };
-    default:
-      return state;
-  }
-};
 
-export default entitiesReducer;
+export default combineReducers({
+  users: usersReducer,
+  questions: questionsReducer
+});

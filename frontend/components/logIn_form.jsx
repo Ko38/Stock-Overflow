@@ -31,7 +31,7 @@ export default class LogInForm extends React.Component {
 
   render() {
     return (
-      <form onSubmit={this.handleSubmit.bind(this)}>
+      <form className="formBody" onSubmit={this.handleSubmit.bind(this)}>
         <label> <b>Username/Email:</b>
           <input type="text" onChange={this.handleInput.bind(this)("usernameOrEmail")} />
         </label> <br/>

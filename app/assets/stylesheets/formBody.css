@@ -1,4 +1,4 @@
-.body form {
+.formBody {
   display: inline-block;
     margin-left: auto;
     margin-right: auto;
@@ -9,6 +9,7 @@
   background-color: #f2f2f2;
   padding: 20px;
 }
+
 
 input[type=text], input[type=password] {
   width: 100%;
@@ -33,8 +34,4 @@ input[type=submit] {
 
 input[type=submit]:hover {
   background-color: #007ed9;
-}
-
-div {
-  
 }
