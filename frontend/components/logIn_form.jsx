@@ -32,10 +32,11 @@ export default class LogInForm extends React.Component {
   render() {
     return (
       <form onSubmit={this.handleSubmit.bind(this)}>
-        <label> Username/Email:
+        <label> <b>Username/Email:</b>
           <input type="text" onChange={this.handleInput.bind(this)("usernameOrEmail")} />
         </label> <br/>
-        <label> Password: 
+        <label>
+          <b> Password: </b>
           <input type="password" onChange={this.handleInput.bind(this)("password")} />
         </label> <br />
         <input type="submit" value="Log In" />

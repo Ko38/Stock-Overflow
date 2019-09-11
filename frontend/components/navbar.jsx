@@ -15,7 +15,7 @@ class NavBar extends React.Component {
       (
         [
           <li key="welcome" className="floatRightLi welcomeText">
-            Welcome {this.props.currentUser.username} !
+            Logged in as <b>{this.props.currentUser.username}</b>
           </li>
           ,
           <li key="logOut" className="floatRightLi">
@@ -43,7 +43,12 @@ class NavBar extends React.Component {
     return (
       <div className="navBar">
         <ul>
-          <li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li>
+          <li>
+            
+          </li>
+          <li>
+            
+            </li><li></li><li></li><li></li><li></li><li></li>
           {greetingWithButtons}
         </ul>
       </div>

@@ -26,20 +26,21 @@ export default class SessionForm extends React.Component {
 
   render() {
     return (
-      <form>
+      <form onSubmit={this.handleSubmit.bind(this)}>
         <label>
-          Username:
+          <b>Username:</b>
           <input type="text" onChange={this.handleInput.bind(this)("username")} />
         </label> <br/>
         <label>
-          Password:
-          <input type="password" onChange={this.handleInput.bind(this)("password")} />
-        </label> <br />
-        <label>
-          Email:
+          <b>Email:</b>
           <input type="text" onChange={this.handleInput.bind(this)("email")} />
         </label> <br />
-        <button onClick={this.handleSubmit.bind(this)}>Sign Up</button>
+        <label>
+          <b>Password:</b>
+          <input type="password" onChange={this.handleInput.bind(this)("password")} />
+        </label> <br />
+        
+        <input type="submit" value="Sign Up"></input>
       </form>
     );
   }
