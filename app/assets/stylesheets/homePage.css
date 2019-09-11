@@ -1,0 +1,34 @@
+.responsive {
+  width: 100%;
+  height: auto;
+}
+
+.splash {
+  background: #ffcf10;
+  position: relative;
+  width: 100%;
+  height: 500px;
+}
+
+.header{
+  position: absolute;
+  width: 100%;
+  left: 0;
+  right: 0;
+  top: 17%;
+  margin-left: auto;
+  margin-right: auto;
+  
+}
+
+.bigHeader {
+  font-size: 60px;
+  font-family: 'Roboto Slab Bold',serif;
+  font-weight: 700;
+}
+
+.headerMessage {
+  padding-left: 29%;
+  padding-right: 29%;
+  font-size: 28px;
+}

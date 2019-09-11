@@ -44,11 +44,15 @@ class NavBar extends React.Component {
       <div className="navBar">
         <ul>
           <li>
-            
           </li>
           <li>
+            <Link to="/">
+              <img src="/assets/logo.png" alt="" className="logo"/>
+            </Link>
             
-            </li><li></li><li></li><li></li><li></li><li></li>
+          </li>
+          
+          <li></li><li></li><li></li><li></li><li></li>
           {greetingWithButtons}
         </ul>
       </div>
