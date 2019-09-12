@@ -27,14 +27,14 @@ class NavBar extends React.Component {
       ) : (
         [
           <li key="logIn" className="rightLi"> 
-            <Link to="/login" className="logInButton aButton">
+            <Link to="/login" className="logInButton aButton navLinkBtn">
               Log In
             </Link> 
           </li>
           ,
 
           <li key="signUp" className="rightLi" >
-            <Link to="/signup" className=" signUpButton aButton">
+            <Link to="/signup" className=" signUpButton aButton navLinkBtn">
               Sign Up
             </Link>
           </li>
@@ -46,7 +46,7 @@ class NavBar extends React.Component {
           <li className="burger">
           </li>
           <li className="logoLi">
-            <Link to="/">
+            <Link className="navLinkBtn" to="/">
               <img src="/assets/logo.png" alt="" className="logo"/>
             </Link>
             

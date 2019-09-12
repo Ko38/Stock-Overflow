@@ -3,5 +3,4 @@ class Api::QuestionsController < ApplicationController
     @questions = Question.all
     render :index
   end
-
 end

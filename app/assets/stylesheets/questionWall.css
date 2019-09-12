@@ -3,4 +3,42 @@
   height: 100%;
   margin: 0;
   background: #FFFFFF;
+  display: flex;
+}
+
+.sidenav {
+  height: 94%;
+  width: 160px;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  background-color: #FFFFFF;
+  border-style: groove;
+  overflow-x: hidden;
+  padding-top: 20px;
+  /* display: flex; */
+}
+
+.mid {
+  text-align: left;
+  width: 60%;
+}
+
+.questionHeader{
+  display: block;
+  font-size: 2em;
+  margin-top: 0.67em;
+  margin-bottom: 0.67em;
+  margin-left: 20px;
+  margin-right: 0;
+  font-weight: bold;
+}
+
+.questionList {
+  display: inline;
+}
+
+.questionItem{
+  border-top: 1px solid rgb(189, 196, 202);
+  width: 100%;
 }
