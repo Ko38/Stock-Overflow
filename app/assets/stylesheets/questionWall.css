@@ -6,6 +6,19 @@
   display: flex;
 }
 
+.questionSummary {
+  width: 100%;
+  display: inline-block;
+}
+
+.linkToQuestion {
+  width: 100%;
+}
+
+.questionInfo {
+  float: right;
+}
+
 .sidenav {
   height: 94%;
   width: 160px;
@@ -41,4 +54,8 @@
 .questionItem{
   border-top: 1px solid rgb(189, 196, 202);
   width: 100%;
+}
+
+.askQuestionButton {
+  float: right;
 }

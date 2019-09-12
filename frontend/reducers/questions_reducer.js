@@ -5,7 +5,11 @@ const questionsReducer = (state = {}, action) => {
   let newState = Object.assign({}, state);
   switch (action.type) {
     case RECEIVE_QUESTIONS:
-      action.questions.forEach(question => {
+      let questions = action.questions;
+
+      questions.forEach(question => {
+        question.created_at = new Date(question.created_at);
+        question.updated_at = new Date(question.updated_at);
         newState[question.id] = question;
       });
       return newState;

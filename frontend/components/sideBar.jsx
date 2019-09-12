@@ -9,7 +9,8 @@ class SideBar extends React.Component {
   render() {
     return(
       <div className="sidenav">
-        <Link to="/">Home</Link>
+        <Link to="/">Home</Link> <br/>
+        <Link to="/questions">Questions</Link>
       </div>
     );
   }

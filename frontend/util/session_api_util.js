@@ -15,9 +15,15 @@ export const logIn = (user) => {
 };
 
 export const logOut = () => {
-  console.log("LOGOUT")
   return $.ajax({
     method: "delete",
     url: "/api/sessions"
+  });
+};
+
+export const fetchAllUsers = () => {
+  return $.ajax({
+    method: "GET",
+    url: "/api/users"
   });
 };

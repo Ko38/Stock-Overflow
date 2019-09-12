@@ -20,9 +20,9 @@ export default class LogInForm extends React.Component {
 
   handleSubmit(e) {
     e.preventDefault();
-    this.props.logInUser(Object.assign({}, this.state))
+     this.props.logInUser(Object.assign({}, this.state))
       .then( () => { 
-        this.props.history.push("/"); 
+        // this.props.history.push("/"); 
       }, (error) => {
 
         this.setState({errorMessage: error.responseJSON[0]});
