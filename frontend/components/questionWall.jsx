@@ -7,6 +7,7 @@ export default class QuestionWall extends React.Component {
   }
 
   componentDidMount() {
+    console.log("component fetching");
     this.props.fetchQuestions();
   }
 

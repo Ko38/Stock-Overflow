@@ -3,9 +3,7 @@ import QuestionPost from "../questionPost";
 import { fetchQuestions } from "../../actions/question_actions";
 
 const mapStateToProps = (state, ownProps) => {
-  let questionId = ownProps.match.params.questionId
-  console.log(questionId);
-  console.log(state);
+  let questionId = ownProps.match.params.questionId;
   return {
     question: state.entities.questions[questionId]
   };
