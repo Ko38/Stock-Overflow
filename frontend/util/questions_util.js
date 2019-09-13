@@ -20,14 +20,6 @@ export const postQuestion = (question) => {
   });
 };
 
-export const answerQuestion = (answer) => {
-  return $.ajax({
-    method: "POST",
-    url: "/api/answers",
-    data: {answer}
-  });
-};
-
 // export const fetchQuestion = () => {
 //   return $.ajax({
 //     method: "GET",

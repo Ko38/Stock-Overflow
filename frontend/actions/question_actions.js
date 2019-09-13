@@ -1,9 +1,18 @@
 import * as QuestionsUtils from  "../util/questions_util";
+import * as AnswersUtil from "../util/answers_util";
 
 export const RECEIVE_QUESTIONS = "RECEIVE_QUESTIONS";
 export const RECEIVE_QUESTION = "RECEIVE_QUESTION";
 export const RECEIVE_POSTED_QUESTION = "RECEIVE_POSTED_QUESTION";
 export const RECEIVE_ANSWER = "RECEIVE_ANSWER";
+export const REMOVE_ANSWER = "REMOVE_ANSWER";
+
+const removeAnswer = (answer) => {
+  return {
+    type: REMOVE_ANSWER,
+    answer
+  };
+};
 
 const receivePostedPostQuestion = (question) => {
   return {
@@ -59,8 +68,24 @@ export const askQuestion = (question) => {
 
 export const answerQuestion = (answer) => {
   return (dispatch) => {
-    return QuestionsUtils.answerQuestion(answer).then((answer) => {
+    return AnswersUtil.answerQuestion(answer).then((answer) => {
       return dispatch(receiveAnswer(answer));
+    });
+  };
+};
+
+export const updateAnswer = (answerId, body) => {
+  return (dispatch) => {
+    return AnswersUtil.updateAnswer(answerId, body).then((answer) => {
+      return dispatch(receiveAnswer(answer));
+    });
+  };
+};
+
+export const deleteAnswer = (id) => {
+  return (dispatch) => {
+    return AnswersUtil.deleteAnswer(id).then((answer) => {
+      return dispatch(removeAnswer(answer));
     });
   };
 };

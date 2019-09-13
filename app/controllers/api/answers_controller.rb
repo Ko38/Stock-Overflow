@@ -1,5 +1,6 @@
 class Api::AnswersController < ApplicationController
   def create 
+
     author_id = current_user.id
     question_id = user_params[:question_id]
     body = user_params[:body]
@@ -13,9 +14,34 @@ class Api::AnswersController < ApplicationController
     end
   end
 
+  def update 
+    answer_id = params[:id]
+    body = user_params[:body]
+
+    @answer = Answer.find(answer_id)
+    @answer.body = body
+
+    if @answer.save 
+      render :show
+    else
+      render json: ["Something's wrong!"], status: 404
+    end
+  end
+
+  def destroy 
+
+    begin
+      @answer = Answer.find(params[:id])
+      @answer.destroy
+      render :show
+    rescue
+      render json: "Answer doesn't exist", status: 422
+    end
+  end
+
   private
 
   def user_params
-    params.require(:answer).permit(:body, :question_id)
+    params.require(:answer).permit(:body, :question_id, :answer_id)
   end
 end
