@@ -6,6 +6,7 @@ Rails.application.routes.draw do
     resources :users
     resource :sessions
     resources :questions
+    resources :answers
   end
   
 end

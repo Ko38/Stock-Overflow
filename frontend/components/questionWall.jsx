@@ -33,8 +33,8 @@ export default class QuestionWall extends React.Component {
               {question.title}
             </Link>
             <div className="questionInfo">
-              asked: {question.created_at.toString()} <br />
-              updated: {question.updated_at.toString()} <br />
+              asked: {question.created_at ? question.created_at.toString() : undefined} <br />
+              updated: {question.updated_at ? question.updated_at.toString() : undefined} <br />
               author: {username}
             </div>
           </div>

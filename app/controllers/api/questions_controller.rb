@@ -19,6 +19,18 @@ class Api::QuestionsController < ApplicationController
     end
   end
 
+  def show
+    id = params[:id]
+
+    @question = Question.find(id)
+    
+    if @question
+      render :show
+    else 
+      render json: ["Something's wrong!"], status: 404         
+    end
+  end
+
   private
 
   def user_params

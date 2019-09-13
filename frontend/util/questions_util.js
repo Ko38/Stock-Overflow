@@ -5,6 +5,13 @@ export const fetchQuestions = () => {
   });
 };
 
+export const fetchQuestion = (id) => {
+  return $.ajax({
+    method: "GET",
+    url: `/api/questions/${id}`
+  });
+};
+
 export const postQuestion = (question) => {
   return $.ajax({
     method: "POST",
@@ -12,6 +19,15 @@ export const postQuestion = (question) => {
     data: {question}
   });
 };
+
+export const answerQuestion = (answer) => {
+  return $.ajax({
+    method: "POST",
+    url: "/api/answers",
+    data: {answer}
+  });
+};
+
 // export const fetchQuestion = () => {
 //   return $.ajax({
 //     method: "GET",
