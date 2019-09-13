@@ -6,11 +6,19 @@ export const RECEIVE_QUESTION = "RECEIVE_QUESTION";
 export const RECEIVE_POSTED_QUESTION = "RECEIVE_POSTED_QUESTION";
 export const RECEIVE_ANSWER = "RECEIVE_ANSWER";
 export const REMOVE_ANSWER = "REMOVE_ANSWER";
+export const REMOVE_QUESTION = "REMOVE_QUESTION";
 
 const removeAnswer = (answer) => {
   return {
     type: REMOVE_ANSWER,
     answer
+  };
+};
+
+const removeQuestion = (question) => {
+  return {
+    type: REMOVE_QUESTION,
+    question 
   };
 };
 
@@ -86,6 +94,23 @@ export const deleteAnswer = (id) => {
   return (dispatch) => {
     return AnswersUtil.deleteAnswer(id).then((answer) => {
       return dispatch(removeAnswer(answer));
+    });
+  };
+};
+
+export const updateQuestion = (question) => {
+  console.log(question);
+  return (dispatch) => {
+    return QuestionsUtils.updateQuestion(question).then((question) => {
+      return dispatch(receiveQuestion(question));
+    });
+  };
+};
+
+export const deleteQuestion = (id) => {
+  return (dispatch) => {
+    return QuestionsUtils.deleteQuestion(id).then((question) => {
+      return dispatch(removeQuestion(question));
     });
   };
 };

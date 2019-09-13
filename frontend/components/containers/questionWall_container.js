@@ -1,19 +1,21 @@
 import { connect } from "react-redux";
 import QuestionWall from "../questionWall";
-import { fetchQuestions} from "../../actions/question_actions";
+import { fetchQuestions, deleteQuestion} from "../../actions/question_actions";
 import {fetchAllUsers} from "../../actions/user_actions";
 
 const mapStateToProps = (state) => {
   return {
     questions: state.entities.questions,
-    users: state.entities.users
+    users: state.entities.users,
+    session: state.session
   };
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    fetchQuestions: () => { dispatch(fetchQuestions());},
-    fetchAllUsers: () => { dispatch(fetchAllUsers());}
+    fetchQuestions: () => { return dispatch(fetchQuestions());},
+    fetchAllUsers: () => { return dispatch(fetchAllUsers());},
+    deleteQuestion: (id) => { return dispatch(deleteQuestion(id)); }
   };
 };
 

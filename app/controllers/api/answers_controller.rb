@@ -19,9 +19,11 @@ class Api::AnswersController < ApplicationController
     body = user_params[:body]
 
     @answer = Answer.find(answer_id)
-    @answer.body = body
-
-    if @answer.save 
+    if @answer 
+      @answer.body = body
+    end
+    
+    if @answer.save && @answer.author_id == current_user.id
       render :show
     else
       render json: ["Something's wrong!"], status: 404
@@ -32,6 +34,9 @@ class Api::AnswersController < ApplicationController
 
     begin
       @answer = Answer.find(params[:id])
+      if @answer.author_id != current_user.id
+        raise
+      end
       @answer.destroy
       render :show
     rescue

@@ -13,11 +13,14 @@ export default class QuestionWall extends React.Component {
     this.props.fetchAllUsers();
   }
 
+  deleteQuestion(id) {
+    this.props.deleteQuestion(id);
+  }
+
   questionItems() {
     let questions = Object.values(this.props.questions).sort((a,b) => {
       return b.updated_at - a.updated_at;
     });
-
     return questions.map(question => {
       let link = `/questions/${question.id}`;
       let username;
@@ -25,6 +28,18 @@ export default class QuestionWall extends React.Component {
       if (user) {
         username = user.username;
       }
+
+      let editButton = question.author_id == this.props.session.currentUserId ? 
+      (
+          <Link to={`/editQuestion/${question.id}`} >Edit</Link>
+      ) : undefined;
+
+      let deleteButton = question.author_id == this.props.session.currentUserId ? 
+      (
+        <button onClick={() => {this.deleteQuestion.bind(this)(question.id);}}>
+          Delete
+        </button>
+      ) : undefined;
       return (
         <li className="questionItem" key={question.id}>
 
@@ -36,6 +51,8 @@ export default class QuestionWall extends React.Component {
               asked: {question.created_at ? question.created_at.toString() : undefined} <br />
               updated: {question.updated_at ? question.updated_at.toString() : undefined} <br />
               author: {username}
+              {deleteButton}
+              {editButton}
             </div>
           </div>
 

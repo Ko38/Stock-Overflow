@@ -8,6 +8,7 @@ import QuestionWallContainer from "./containers/questionWall_container";
 import QuestionPostContainer from "./containers/questionPost_container";
 import HomePage from "./home_page";
 import AskQuestionContainer from "./containers/askQuestion_container";
+import EditQuestionContainer from "./containers/editQuestion_container";
 
 export default (props) => {
   return (
@@ -19,6 +20,7 @@ export default (props) => {
         <Switch key="switchForm">
           <AuthRoute path="/signup" component={SignupFormContainer} />
           <AuthRoute path="/login" component={LogInFormContainer} /> 
+          <ProtectedRoute path="/editQuestion/:questionId" component={EditQuestionContainer} /> 
           <ProtectedRoute path="/askquestion" component={AskQuestionContainer} /> 
           <Route path="/questions/:questionId" component={QuestionPostContainer} />          
           <Route path="/questions" component={QuestionWallContainer} />

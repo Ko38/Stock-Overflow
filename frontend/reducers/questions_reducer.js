@@ -1,4 +1,4 @@
-import { RECEIVE_QUESTIONS, RECEIVE_ANSWER, RECEIVE_QUESTION, REMOVE_ANSWER } from "../actions/question_actions";
+import { RECEIVE_QUESTIONS, RECEIVE_ANSWER, RECEIVE_QUESTION, REMOVE_ANSWER, REMOVE_QUESTION } from "../actions/question_actions";
 import merge from 'lodash/merge';
 
 const questionsReducer = (state = {}, action) => {
@@ -57,6 +57,10 @@ const questionsReducer = (state = {}, action) => {
       //   return answer.id !== action.answer.id;
       // });
       // newState[questionId].answers[0].body = "Yes";
+      return newState;
+    case REMOVE_QUESTION:
+      let question_id = action.question.id;
+      delete newState[question_id];
       return newState;
     default:
       return state;
