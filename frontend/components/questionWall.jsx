@@ -2,23 +2,41 @@ import React from "react";
 import { Link } from "react-router-dom";
 import SideBar from "./sideBar";
 import TestComponent from "./testComponent";
+import queryString from 'query-string'
 
 export default class QuestionWall extends React.Component {
   constructor(props) {
     super(props);
+
   }
 
   componentDidMount() {
     this.props.fetchQuestions();
     this.props.fetchAllUsers();
+
   }
 
   deleteQuestion(id) {
     this.props.deleteQuestion(id);
   }
 
+  filterQuestions(questions){
+    
+    const queryStringValues = queryString.parse(this.props.location.search);
+    let searchText = queryStringValues["search"] || "";
+    let resultQuestions = {};
+
+    for( let question of Object.values(questions)) {
+      if (question.body.includes(searchText) || question.title.includes(searchText)){
+        resultQuestions[question.id] = question;
+      }
+    }
+
+    return resultQuestions;
+  }
+
   questionItems() {
-    let questions = Object.values(this.props.questions).sort((a,b) => {
+    let questions = Object.values(this.filterQuestions(this.props.questions)).sort((a,b) => {
       return b.updated_at - a.updated_at;
     });
     return questions.map(question => {
