@@ -11,7 +11,7 @@ class Api::QuestionsController < ApplicationController
     body = user_params[:body]
 
     @question = Question.new(title: title, body: body, author_id: author_id)
-
+    
     if @question.save 
       render :show
     else
@@ -41,8 +41,8 @@ class Api::QuestionsController < ApplicationController
       @question.body = body
       @question.title = title
     end
-    
-    if @question.save && @question.author_id == @question.id
+
+    if @question.save && @question.author_id == current_user.id
       render :show
     else
       render json: ["Something's wrong!"], status: 404
