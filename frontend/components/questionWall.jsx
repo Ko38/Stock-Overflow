@@ -20,23 +20,38 @@ export default class QuestionWall extends React.Component {
     this.props.deleteQuestion(id);
   }
 
-  // filterQuestions(questions){
-  //   console.log(questions);
-  //   const queryStringValues = queryString.parse(this.props.location.search);
-  //   let searchText = queryStringValues["search"] || "";
-  //   let resultQuestions = {};
+  parseSearchText(rawQueryString) {
+    if(!rawQueryString) {
+      return undefined;
+    }
+    let queryStrings = rawQueryString.substring(1).split("&");
+    let entireSearchStrings = queryStrings.filter(str => {
+      return str.includes("search=");
+    });
+    if (entireSearchStrings.length === 0){
+      return undefined;
+    }
+    let entireSearchString = entireSearchStrings[0];
+    let searchString = entireSearchString.substring("search=".length);
+    return searchString;
+  }
 
-  //   for( let question of Object.values(questions)) {
-  //     if (question.body.includes(searchText) || question.title.includes(searchText)){
-  //       resultQuestions[question.id] = question;
-  //     }
-  //   }
-  //   console.log(resultQuestions);
-  //   return resultQuestions;
-  // }
+  filterQuestions(questions){
+    // const queryStringValues = queryString.parse(this.props.location.search);
+    // let searchText = queryStringValues["search"] || "";
+    let searchText = this.parseSearchText(this.props.location.search) || "";
+    let resultQuestions = {};
+
+    for( let question of Object.values(questions)) {
+      if (question.body.includes(searchText) || question.title.includes(searchText)){
+        resultQuestions[question.id] = question;
+      }
+    }
+    return resultQuestions;
+  }
 
   questionItems() {
-    let questions = Object.values(this.props.questions).sort((a,b) => {
+    let questions = Object.values(this.filterQuestions(this.props.questions)).sort((a,b) => {
       return b.updated_at - a.updated_at;
     });
     return questions.map(question => {
