@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import SideBar from "./sideBar";
 import TestComponent from "./testComponent";
-import queryString from 'query-string'
+// import queryString from 'query-string'
 
 export default class QuestionWall extends React.Component {
   constructor(props) {
@@ -22,15 +22,15 @@ export default class QuestionWall extends React.Component {
 
   filterQuestions(questions){
     
-    const queryStringValues = queryString.parse(this.props.location.search);
-    let searchText = queryStringValues["search"] || "";
+    // const queryStringValues = queryString.parse(this.props.location.search);
+    // let searchText = queryStringValues["search"] || "";
     let resultQuestions = {};
 
-    for( let question of Object.values(questions)) {
-      if (question.body.includes(searchText) || question.title.includes(searchText)){
-        resultQuestions[question.id] = question;
-      }
-    }
+    // for( let question of Object.values(questions)) {
+    //   if (question.body.includes(searchText) || question.title.includes(searchText)){
+    //     resultQuestions[question.id] = question;
+    //   }
+    // }
 
     return resultQuestions;
   }
