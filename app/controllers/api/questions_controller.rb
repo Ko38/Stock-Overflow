@@ -23,12 +23,20 @@ class Api::QuestionsController < ApplicationController
     end
   end
 
+  def record_view(question_id)
+    user_id = current_user.id
+    View.new(question_id: question_id, user_id: user_id).save
+  end
+
   def show
     id = params[:id]
-
+    
     @question = Question.find(id)
     
     if @question
+      if logged_in? 
+        self.record_view(id)
+      end
       render :show
     else 
       render json: ["Something's wrong!"], status: 404         

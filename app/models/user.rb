@@ -8,7 +8,8 @@ class User < ApplicationRecord
   has_many(:question_downvotes, foreign_key: :user_id, class_name: :QuestionDownvote)
   has_many(:answer_downvotes, foreign_key: :user_id, class_name: :AnswerDownvote)
   has_many(:answer_upvotes, foreign_key: :user_id, class_name: :AnswerUpvote)
-
+  has_many(:views, foreign_key: :user_id, class_name: :View)
+  
   attr_reader :password
   
   after_initialize :ensure_session_token

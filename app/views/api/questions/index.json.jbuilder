@@ -8,4 +8,5 @@ json.array! @questions do |question|
   json.upvotes question.upvotes
   json.downvotes question.downvotes
   json.answer_count question.answers.length
+  json.view_count question.views.length
 end

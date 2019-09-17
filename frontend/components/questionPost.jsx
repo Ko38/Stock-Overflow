@@ -96,8 +96,9 @@ export default class QuestionPost extends React.Component {
     let answers;
     let author_id;
     let users = this.props.users; 
-    
+    let view_count;
     if (this.props.question){
+      view_count = this.props.question.view_count;
       author_id = this.props.question.author_id;
       title = this.props.question.title;
       created_at = this.props.question.created_at;
@@ -154,8 +155,9 @@ export default class QuestionPost extends React.Component {
             {title}
           </div>
           <div>
-            Asked {created_at ? new Date(created_at).toString() : undefined} 
-            By {users[author_id] ? users[author_id].username : undefined}
+            Asked {created_at ? new Date(created_at).toString() : undefined}  &nbsp;
+            By {users[author_id] ? users[author_id].username : undefined} &nbsp;
+            Viewed {view_count} {view_count === 1 ? "time" : "times"}
           </div> <br/>
           <div className="questionBody">
             <div>

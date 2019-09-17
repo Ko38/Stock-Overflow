@@ -12,3 +12,4 @@ json.created_at @question.created_at
 json.updated_at @question.updated_at
 json.upvotes @question.upvotes
 json.downvotes @question.downvotes
+json.view_count @question.views.length

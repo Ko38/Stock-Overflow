@@ -5,4 +5,5 @@ class Question < ApplicationRecord
   has_many(:answers, foreign_key: :question_id, class_name: :Answer)
   has_many(:upvotes, foreign_key: :question_id, class_name: :QuestionUpvote)
   has_many(:downvotes, foreign_key: :question_id, class_name: :QuestionDownvote)
+  has_many(:views, foreign_key: :question_id, class_name: :View)
 end

@@ -74,12 +74,15 @@ export default class QuestionWall extends React.Component {
         </button>
       ) : undefined;
       let vote_count = question.upvotes.length - question.downvotes.length;
+      let view_count = question.view_count;
+      console.log(view_count);
       return (
         <li className="questionItem" key={question.id}>
 
           <div className="questionSummary">
             {question.answer_count} {question.answer_count === 1 ? "answer" : "answers"} &nbsp;
-            {vote_count} votes &nbsp;
+            {vote_count} {vote_count === 1 ? "vote" : "votes"} &nbsp;
+            {view_count} {view_count === 1 ? "view" : "views"} &nbsp;
             <Link to={link}>
               {question.title}
             </Link>
