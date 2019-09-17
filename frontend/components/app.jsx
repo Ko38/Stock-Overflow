@@ -16,6 +16,8 @@ export default (props) => {
     [
       <NavBarContainer key="navBar" currentUser={props.currentUser}/>
       ,
+      <div className="emtpySeparator" key="foo"></div>
+      ,
       <div className="body" key="body">
         <Switch key="switchForm">
           <AuthRoute path="/signup" component={SignupFormContainer} />

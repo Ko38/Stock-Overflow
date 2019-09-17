@@ -8,6 +8,7 @@
   position: relative;
   width: 100%;
   height: 600px;
+  transform: skew(0deg, -1.17deg);
 }
 
 .header{
@@ -26,10 +27,12 @@
   font-size: 60px;
   font-family: 'Roboto Slab Bold',serif;
   font-weight: 700;
+  transform: skew(0deg, 1.17deg);
 }
 
 .headerMessage {
   padding-left: 29%;
   padding-right: 29%;
+  transform: skew(0deg, 1.17deg);
   font-size: 28px;
 }

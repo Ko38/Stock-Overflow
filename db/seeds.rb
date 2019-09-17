@@ -8,6 +8,8 @@
 
 ActiveRecord::Base.transaction do
   Question.delete_all
-  question1 = Question.create(title: "What is the best programming language?", author_id: 1, body: "I wanna learn the best language!")
-  question1 = Question.create(title: "What is the worst programming language?", author_id: 1, body: "I wanna avoid the worst language!")
+  User.delete_all
+  user1 = User.create(username: "DemoUser", password: "1234qwer", email: "demo@xyz.com")
+  question1 = Question.create(title: "What is the best programming language?", author_id: user1.id, body: "I wanna learn the best language!")
+  question2 = Question.create(title: "What is the worst programming language?", author_id: user1.id, body: "I wanna avoid the worst language!")
 end

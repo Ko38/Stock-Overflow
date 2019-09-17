@@ -45,7 +45,7 @@ class NavBar extends React.Component {
           ,
 
           <li key="signUp" className="rightLi" >
-            <Link to="/signup" className=" signUpButton aButton navLinkBtn">
+            <Link to="/signup" className="signUpButton aButton navLinkBtn">
               Sign Up
             </Link>
           </li>
@@ -70,7 +70,7 @@ class NavBar extends React.Component {
             <div className="search-container">
               {/* <form onSubmit={this.searchSubmit.bind(this)} className="search-form" action="/action_page.php"> */}
                 <input type="text" placeholder="Search.." name="search" onChange={this.handleSearchInput.bind(this)("search")}/>
-                <Link to={`/questions?search=${this.state.search}`} className="fa fa-search"></Link>
+                <Link to={`/questions?search=${this.state.search}`} className="fa fa-search search-icon"></Link>
 
                   {/* <button type="submit"><i className="fa fa-search"></i></button> */}
               {/* </form> */}

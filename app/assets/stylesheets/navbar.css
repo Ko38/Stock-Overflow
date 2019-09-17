@@ -9,10 +9,27 @@
   margin: 0;
   z-index: 10;
   overflow: hidden;
+  position: absolute;
+}
+
+
+@media screen and (max-width: 880px) {
+  .navBar { 
+    height: 6%;
+  }
+}
+
+.emtpySeparator {
+  height: 6%;
+  width: 100%;
 }
 
 .burger, .rightLi{
   width: 10%;
+}
+
+.burger {
+  float: right;
 }
 
 .logoLi{
@@ -30,19 +47,6 @@
   color: white;
   text-align: center;
   text-decoration: none;
-}
-
-
-.aButton {
-  margin-top: 10%;
-  padding: 10px 10px 10px 10px;
-  border-radius: 10px;
-  cursor: pointer;
-  height: 40%;
-  width: 80%;
-  font-size: 20px;
-  vertical-align: middle;
-  padding: 14px 16px;
 }
 
 .logOutButton {
@@ -121,4 +125,30 @@
 
 .search-form {
   display : flex;
+}
+
+.search-icon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 36px;
+  font-size: 28px;
+}
+
+.aButton {
+  margin-top: 10%;
+  padding: 10px 10px 10px 10px;
+  border-radius: 10px;
+  cursor: pointer;
+  height: 40%;
+  width: 80%;
+  font-size: 20px;
+  vertical-align: middle;
+  padding: 14px 16px;
+}
+
+@media screen and (max-width: 880px) {
+  .aButton { 
+    font-size: 14px;
+  }
 }
