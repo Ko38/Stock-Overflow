@@ -7,6 +7,10 @@ Rails.application.routes.draw do
     resource :sessions
     resources :questions
     resources :answers
+    post "questions/:id/upvote", to: "questions#upvote"
+    post "questions/:id/downvote", to: "questions#downvote"
+    post "answers/:id/upvote", to: "answers#upvote"
+    post "answers/:id/downvote", to: "answers#downvote"
   end
   
 end

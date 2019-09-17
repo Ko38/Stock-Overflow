@@ -1,5 +1,5 @@
 import * as QuestionsUtils from  "../util/questions_util";
-import * as AnswersUtil from "../util/answers_util";
+import * as AnswersUtils from "../util/answers_util";
 
 export const RECEIVE_QUESTIONS = "RECEIVE_QUESTIONS";
 export const RECEIVE_QUESTION = "RECEIVE_QUESTION";
@@ -76,7 +76,7 @@ export const askQuestion = (question) => {
 
 export const answerQuestion = (answer) => {
   return (dispatch) => {
-    return AnswersUtil.answerQuestion(answer).then((answer) => {
+    return AnswersUtils.answerQuestion(answer).then((answer) => {
       return dispatch(receiveAnswer(answer));
     });
   };
@@ -84,7 +84,7 @@ export const answerQuestion = (answer) => {
 
 export const updateAnswer = (answerId, body) => {
   return (dispatch) => {
-    return AnswersUtil.updateAnswer(answerId, body).then((answer) => {
+    return AnswersUtils.updateAnswer(answerId, body).then((answer) => {
       return dispatch(receiveAnswer(answer));
     });
   };
@@ -92,14 +92,13 @@ export const updateAnswer = (answerId, body) => {
 
 export const deleteAnswer = (id) => {
   return (dispatch) => {
-    return AnswersUtil.deleteAnswer(id).then((answer) => {
+    return AnswersUtils.deleteAnswer(id).then((answer) => {
       return dispatch(removeAnswer(answer));
     });
   };
 };
 
 export const updateQuestion = (question) => {
-  console.log(question);
   return (dispatch) => {
     return QuestionsUtils.updateQuestion(question).then((question) => {
       return dispatch(receiveQuestion(question));
@@ -111,6 +110,38 @@ export const deleteQuestion = (id) => {
   return (dispatch) => {
     return QuestionsUtils.deleteQuestion(id).then((question) => {
       return dispatch(removeQuestion(question));
+    });
+  };
+};
+
+export const upvoteQuestion = (id) => {
+  return (dispatch) => {
+    return QuestionsUtils.upvoteQuestion(id).then((question) => {
+      return dispatch(receiveQuestion(question));
+    });
+  };
+};
+
+export const downvoteQuestion = (id) => {
+  return (dispatch) => {
+    return QuestionsUtils.downvoteQuestion(id).then((question) => {
+      return dispatch(receiveQuestion(question));
+    });
+  };
+};
+
+export const upvoteAnswer = (id) => {
+  return (dispatch) => {
+    return AnswersUtils.upvoteAnswer(id).then((answer) => {
+      return dispatch(receiveAnswer(answer));
+    });
+  };
+};
+
+export const downvoteAnswer = (id) => {
+  return (dispatch) => {
+    return AnswersUtils.downvoteAnswer(id).then((answer) => {
+      return dispatch(receiveAnswer(answer));
     });
   };
 };

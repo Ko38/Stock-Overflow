@@ -73,10 +73,13 @@ export default class QuestionWall extends React.Component {
           Delete
         </button>
       ) : undefined;
+      let vote_count = question.upvotes.length - question.downvotes.length;
       return (
         <li className="questionItem" key={question.id}>
 
           <div className="questionSummary">
+            {question.answer_count} {question.answer_count === 1 ? "answer" : "answers"} &nbsp;
+            {vote_count} votes &nbsp;
             <Link to={link}>
               {question.title}
             </Link>

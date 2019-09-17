@@ -25,3 +25,17 @@ export const deleteAnswer = (id) => {
     url: `/api/answers/${id}`
   });
 };
+
+export const upvoteAnswer = (id) => {
+  return $.ajax({
+    method: "POST",
+    url: `/api/answers/${id}/upvote`
+  });
+};
+
+export const downvoteAnswer = (id) => {
+  return $.ajax({
+    method: "POST",
+    url: `/api/answers/${id}/downvote`
+  });
+};

@@ -5,4 +5,7 @@ json.array! @questions do |question|
   json.body question.body
   json.created_at question.created_at
   json.updated_at question.updated_at
+  json.upvotes question.upvotes
+  json.downvotes question.downvotes
+  json.answer_count question.answers.length
 end

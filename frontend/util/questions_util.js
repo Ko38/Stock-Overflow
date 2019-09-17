@@ -28,7 +28,7 @@ export const deleteQuestion = (id) => {
 };
 
 export const updateQuestion = (question) => {
-  console.log(question);
+
   return $.ajax({
     method: "PATCH",
     url: `/api/questions/${question.id}`,
@@ -38,6 +38,20 @@ export const updateQuestion = (question) => {
         body: question.body
       }
     }
+  });
+};
+
+export const upvoteQuestion = (id) => {
+  return $.ajax({
+    method: "POST",
+    url: `/api/questions/${id}/upvote`
+  });
+};
+
+export const downvoteQuestion = (id) => {
+  return $.ajax({
+    method: "POST",
+    url: `/api/questions/${id}/downvote`
   });
 };
 

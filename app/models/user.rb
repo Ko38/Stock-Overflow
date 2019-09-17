@@ -4,6 +4,11 @@ class User < ApplicationRecord
 
   has_many(:questions, foreign_key: :author_id, class_name: :Question)
   has_many(:answers, foreign_key: :author_id, class_name: :Answer)
+  has_many(:question_upvotes, foreign_key: :user_id, class_name: :QuestionUpvote)
+  has_many(:question_downvotes, foreign_key: :user_id, class_name: :QuestionDownvote)
+  has_many(:answer_downvotes, foreign_key: :user_id, class_name: :AnswerDownvote)
+  has_many(:answer_upvotes, foreign_key: :user_id, class_name: :AnswerUpvote)
+
   attr_reader :password
   
   after_initialize :ensure_session_token

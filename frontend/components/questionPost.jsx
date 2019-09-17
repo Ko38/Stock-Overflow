@@ -58,6 +58,37 @@ export default class QuestionPost extends React.Component {
     this.props.deleteAnswer(answerId);
   }
 
+  upvoteQuestion() {
+    this.props.upvoteQuestion(this.props.question.id);
+  }
+
+  downvoteQuestion() {
+    this.props.downvoteQuestion(this.props.question.id);
+  }
+
+  upvoteAnswer(answer) {
+    this.props.upvoteAnswer(answer.id);
+  }
+
+  downvoteAnswer(answer) {
+    this.props.downvoteAnswer(answer.id);
+  }
+
+  questionVoteCount() {
+    if (!this.props.question) {
+      return 0;
+    }
+    return this.props.question.upvotes.length - this.props.question.downvotes.length;
+  }
+
+  answerVoteCount(answer) {
+
+    if (!answer) {
+      return 0;
+    }
+    return answer.upvotes.length - answer.downvotes.length;
+  }
+
   render() {
     let title;
     let created_at;
@@ -86,7 +117,12 @@ export default class QuestionPost extends React.Component {
             );
           }
           return(
-            <li key={answer.id}>
+            <li key={answer.id} className="entireAnswerPost">
+              <div>
+                <button onClick={() => {this.upvoteAnswer.bind(this)(answer)}} className="voteBtn"><i className="fa fa-arrow-up voteLogo"></i></button>
+                <br /> {this.answerVoteCount(answer)} {this.answerVoteCount(answer) === 1 ? "vote" : "votes"} <br />
+                <button onClick={() => {this.downvoteAnswer.bind(this)(answer)}} className="voteBtn"><i className="fa fa-arrow-down voteLogo"></i></button>
+              </div>
               <textarea ref={(textarea => {this.answerTextareas[answer.id] = textarea;})} 
               className="answerPost" defaultValue={answer.body}  disabled>
                 </textarea> <br/>
@@ -113,7 +149,7 @@ export default class QuestionPost extends React.Component {
       <div className="questionWall">
         <SideBar />
         <div className="mid">
-
+          
           <div className="questionHeader">
             {title}
           </div>
@@ -121,8 +157,15 @@ export default class QuestionPost extends React.Component {
             Asked {created_at ? new Date(created_at).toString() : undefined} 
             By {users[author_id] ? users[author_id].username : undefined}
           </div> <br/>
-          <div>
-            {body}
+          <div className="questionBody">
+            <div>
+              <button onClick={this.upvoteQuestion.bind(this)} className="voteBtn"><i className="fa fa-arrow-up voteLogo"></i></button>
+              <br /> {this.questionVoteCount()} {this.questionVoteCount() === 1 ? "vote" : "votes"} <br/>
+              <button onClick={this.downvoteQuestion.bind(this)} className="voteBtn"><i className="fa fa-arrow-down voteLogo"></i></button>
+            </div>
+            <div>
+              {body}
+            </div>
           </div>
           <div>
             <ul>

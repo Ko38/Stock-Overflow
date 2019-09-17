@@ -16,19 +16,19 @@ ActiveRecord::Schema.define(version: 2019_09_17_001627) do
   enable_extension "plpgsql"
 
   create_table "answer_downvotes", force: :cascade do |t|
-    t.integer "answer_id", null: false
+    t.integer "question_id", null: false
     t.integer "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["answer_id", "user_id"], name: "index_answer_downvotes_on_answer_id_and_user_id", unique: true
+    t.index ["question_id", "user_id"], name: "index_answer_downvotes_on_question_id_and_user_id", unique: true
   end
 
   create_table "answer_upvotes", force: :cascade do |t|
-    t.integer "answer_id", null: false
+    t.integer "question_id", null: false
     t.integer "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["answer_id", "user_id"], name: "index_answer_upvotes_on_answer_id_and_user_id", unique: true
+    t.index ["question_id", "user_id"], name: "index_answer_upvotes_on_question_id_and_user_id", unique: true
   end
 
   create_table "answers", force: :cascade do |t|
