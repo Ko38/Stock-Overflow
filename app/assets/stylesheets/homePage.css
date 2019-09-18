@@ -25,7 +25,7 @@
 
 .bigHeader {
   font-size: 60px;
-  font-family: 'Roboto Slab Bold',serif;
+  font-family: 'Roboto Slab',serif;
   font-weight: 700;
   transform: skew(0deg, 1.17deg);
 }
@@ -35,4 +35,36 @@
   padding-right: 29%;
   transform: skew(0deg, 1.17deg);
   font-size: 28px;
+}
+
+.developerHeader {
+  font-family: 'Roboto Slab',serif;
+  font-weight: 700;
+  font-size: 38px;
+}
+
+.divider {
+  background: #f2720c;
+  margin: 0 auto;
+  background: #f2720c;
+  display: block;
+  width: 80px;
+  height: 6px;
+}
+
+.developerMessage{
+  padding-left:29%;
+  padding-right: 29%;
+  font-size: 18px;
+}
+
+.homePageContainer {
+  height: 100%;
+  background: white;
+}
+
+.burger {
+  display: flex;
+    justify-content: flex-end;
+    align-items: center;
 }

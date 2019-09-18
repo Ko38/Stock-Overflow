@@ -6,10 +6,23 @@ html, body { height: 100%; width: 100%; margin: 0; }
 
 .body {
   /* display: flex; */
-  height: 94%;
+  height: 100%;
   width: 100%;
   margin: 0;
   background: #EAEAEA;
   /* display: block; */
   text-align: center;
+  margin-bottom: 100px;
+}
+
+.footer {
+  margin: 20px;
+      max-width: 1264px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 32px 12px 12px 12px;
+    display: flex;
+    flex-flow: row wrap;
+    background: #242729;
+    height: 200px;
 }

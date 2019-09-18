@@ -30,6 +30,10 @@ export default (props) => {
         </Switch>
       </div>
       , 
+      <div className="footer" key="footer">
+
+
+      </div>
     ]
   )
 };

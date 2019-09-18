@@ -8,23 +8,33 @@ class HomePage extends React.Component {
 
   render(){
     return(
-      <div className="splash">
-        <br />
-        <br />
-        <br/>
-        <img className="responsive" src="/assets/background.svg" alt=""/>
-        <div className="header">
-          <h1 className="bigHeader">We &lt;3 people who code</h1>
-          <p className="headerMessage">
-            We build products that empower developers and connect them to solutions that enable productivity, growth, and discovery.
-          </p>
+      <div className="homePageContainer">
+        <div className="splash">
+          <div>
+            <br />
+            <br />
+            <br/>
+            <img className="responsive" src="/assets/background.svg" alt=""/>
+            <div className="header">
+              <h1 className="bigHeader">We &lt;3 people who code</h1>
+              <p className="headerMessage">
+                We build products that empower developers and connect them to solutions that enable productivity, growth, and discovery.
+              </p>
+            </div>
+            
+            <br/>
+            <br />
+            <br />
+            <br />
+            <br />
+          </div>
         </div>
-        
-        <br/>
-        <br />
-        <br />
-        <br />
-        <br />
+        <div className="developerBlock"><br /><br /><br /><br />
+          <h2 className="developerHeader">For developers, by developers</h2>
+          <div className="divider"></div>
+          <p className="developerMessage">Stock Overflow is an open community for anyone that codes. We help you get answers to your toughest coding questions, share knowledge with your coworkers in private, and find your next dream job.</p>
+
+        </div>
       </div>
     );
   }

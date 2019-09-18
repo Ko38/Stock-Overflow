@@ -55,8 +55,10 @@ class NavBar extends React.Component {
       <div className="navBar">
         <ul>
           <li className="burger">
-            <Link to="/questions">
-              Questions
+            <Link to="/questions" className="linkToQuestions">
+              <div className="burgerMenuBorder"></div>
+              <div className="burgerMenuBorder"></div>
+              <div className="burgerMenuBorder"></div>
             </Link>
           </li>
           <li className="logoLi">

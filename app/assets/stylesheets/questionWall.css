@@ -20,14 +20,14 @@
 }
 
 .sidenav {
-  height: 94%;
+  height: 100%;
   width: 160px;
   z-index: 1;
   top: 0;
   left: 0;
   background-color: #FFFFFF;
   border-style: groove;
-  overflow-x: hidden;
+  overflow: hidden;
   padding-top: 20px;
   /* display: flex; */
 }
