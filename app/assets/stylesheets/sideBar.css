@@ -1,0 +1,53 @@
+.sidenav {
+  height: 120%;
+  width: 160px;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  background-color: #FFFFFF;
+  border-style: groove;
+  overflow: hidden;
+  padding-top: 20px;
+  border-color: rgba(255, 255, 255, 0.25);
+  /* display: flex; */
+      /* margin-left: 25px; */
+}
+
+.sideNavLinkText {
+  color: #535a60;
+  display: block;
+  padding: 4px;
+  /* padding-left: 30px; */
+  line-height: 1.8;
+  font-size: 18px;
+  float:left;
+  text-align: left;
+  text-decoration: none;
+  width: 93%;
+}
+
+.publicText {
+  float: left;
+  color: rgb(106, 115, 124);
+  font-family: Arial;
+  font-weight: 100;
+  font-size: 0.75rem;
+  margin-top: 1rem;
+  margin-bottom: 0.7rem;
+  margin-left: 0.5rem;
+}
+
+.sideNavLinkText:hover {
+  text-decoration: underline;
+}
+
+.sideNavLinkText:active {
+  text-decoration: underline;
+} 
+
+.questionsLink {
+      font-weight: bold;
+    background: rgba(12,13,14,0.05);
+    color: #0C0D0E;
+    border-right: 3px solid #F48024;
+}

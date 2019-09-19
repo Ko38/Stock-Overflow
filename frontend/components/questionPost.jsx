@@ -89,6 +89,26 @@ export default class QuestionPost extends React.Component {
     return answer.upvotes.length - answer.downvotes.length;
   }
 
+  timeText(created_at) {
+    let diff = new Date() - created_at;
+    let diffSeconds = Math.ceil(diff / 1000);
+    if (diffSeconds < 60) {
+      return `${diffSeconds} seconds ago`;
+    }
+    let diffMinutes = Math.ceil(diffSeconds / 60);
+    if (diffMinutes < 60) {
+      return `${diffMinutes} minutes ago`;
+    }
+
+    let diffHours = Math.ceil(diffMinutes / 60);
+    if (diffHours < 24) {
+      return `${diffHours} hours ago`;
+    }
+
+    let diffDays = Math.ceil(diffHours * 24);
+    return `${diffDays} days ago`;
+  }
+
   render() {
     let title;
     let created_at;
@@ -97,12 +117,16 @@ export default class QuestionPost extends React.Component {
     let author_id;
     let users = this.props.users; 
     let view_count;
+    let updated_at;
+    let username;
     if (this.props.question){
+      updated_at = this.props.question.updated_at;
       view_count = this.props.question.view_count;
       author_id = this.props.question.author_id;
       title = this.props.question.title;
       created_at = this.props.question.created_at;
       body = this.props.question.body;
+      username = users[author_id].username;
       this.state.question_id = this.props.question.id;
       if (this.props.question.answers){
         answers = Object.values(this.props.question.answers).map((answer) => {
@@ -110,26 +134,47 @@ export default class QuestionPost extends React.Component {
           let deleteButton;
           if (answer.author_id == this.props.session.currentUserId) {
             editButton = (
-              <button onClick={() => { this.editAnswerOnClick.bind(this)(answer.id) }} >{this.state.editButtonText}</button>
+              <button className="editButton" onClick={() => { this.editAnswerOnClick.bind(this)(answer.id) }} >{this.state.editButtonText}</button>
             );
 
             deleteButton = (
-              <button onClick={() => { this.deleteAnswerOnClick.bind(this)(answer.id) }} >Delete</button>
+              <button className="deleteButton" onClick={() => { this.deleteAnswerOnClick.bind(this)(answer.id) }} >Delete</button>
             );
           }
           return(
-            <li key={answer.id} className="entireAnswerPost">
-              <div>
-                <button onClick={() => {this.upvoteAnswer.bind(this)(answer)}} className="voteBtn"><i className="fa fa-arrow-up voteLogo"></i></button>
-                <br /> {this.answerVoteCount(answer)} {this.answerVoteCount(answer) === 1 ? "vote" : "votes"} <br />
-                <button onClick={() => {this.downvoteAnswer.bind(this)(answer)}} className="voteBtn"><i className="fa fa-arrow-down voteLogo"></i></button>
+            <li key={answer.id} >
+              <div className="entireAnswerPost">
+                <div className="voteSection">
+                  {/* <button onClick={() => {this.upvoteAnswer.bind(this)(answer)}} className="voteBtn"><i className="fa fa-arrow-up voteLogo"></i></button> */}
+                  <svg onClick={() => { this.upvoteAnswer.bind(this)(answer) }} className="svg-icon m0 iconArrowUpLg voteBtn" width="36" height="36" viewBox="0 0 36 36">
+                    <path d="M2 26h32L18 10 2 26z" className="voteBtnIcon"></path>
+                  </svg>
+                  <br /> {this.answerVoteCount(answer)} {/*this.answerVoteCount(answer) === 1 ? "vote" : "votes"*/} <br />
+                  {/* <button onClick={() => {this.downvoteAnswer.bind(this)(answer)}} className="voteBtn"><i className="fa fa-arrow-down voteLogo"></i></button> */}
+                  <svg onClick={() => { this.downvoteAnswer.bind(this)(answer) }} aria-hidden="true" className="svg-icon m0 iconArrowDownLg voteBtn" width="36" height="36" viewBox="0 0 36 36">
+                    <path d="M2 10h32L18 26 2 10z" className="voteBtnIcon"></path>
+                  </svg>
+                </div>
+                <div className="answerSection">
+                  <textarea ref={(textarea => {this.answerTextareas[answer.id] = textarea;})} 
+                    className="answerPost" defaultValue={answer.body}  disabled>
+                  </textarea> <br/>
+                  <div className="answerInfo">
+                  {/* answered by {users[answer.author_id] ? users[answer.author_id].username : undefined} */}
+                    answered: {this.timeText(new Date(answer.created_at))} <br />
+                    <div className="userNameContainer">
+                      <img src="/assets/userIcon.png" alt="" className="userIcon" />
+                      <div className="userName">
+                        &nbsp; {users[answer.author_id] ? users[answer.author_id].username : undefined} <br />
+                      </div>
+                    </div>
+                    {deleteButton} {editButton} 
+                  </div>
+                </div>
               </div>
-              <textarea ref={(textarea => {this.answerTextareas[answer.id] = textarea;})} 
-              className="answerPost" defaultValue={answer.body}  disabled>
-                </textarea> <br/>
-              answered by {users[answer.author_id] ? users[answer.author_id].username : undefined}
-              {editButton} {deleteButton}
+              <hr/>
             </li>
+
           );
         });
       }
@@ -151,26 +196,58 @@ export default class QuestionPost extends React.Component {
         <SideBar />
         <div className="mid">
           
-          <div className="questionHeader">
+          <div className="questionTitle">
             {title}
           </div>
-          <div>
-            Asked {created_at ? new Date(created_at).toString() : undefined}  &nbsp;
-            By {users[author_id] ? users[author_id].username : undefined} &nbsp;
+          <div className="questionBasicInfo">
+            {/* Asked {created_at ? new Date(created_at).toString() : undefined}  &nbsp; */}
+            Asked {this.timeText(new Date(created_at))} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            {/* By {users[author_id] ? users[author_id].username : undefined} &nbsp; */}
             Viewed {view_count} {view_count === 1 ? "time" : "times"}
           </div> <br/>
+          <hr className="separator"/>
           <div className="questionBody">
-            <div>
-              <button onClick={this.upvoteQuestion.bind(this)} className="voteBtn"><i className="fa fa-arrow-up voteLogo"></i></button>
-              <br /> {this.questionVoteCount()} {this.questionVoteCount() === 1 ? "vote" : "votes"} <br/>
-              <button onClick={this.downvoteQuestion.bind(this)} className="voteBtn"><i className="fa fa-arrow-down voteLogo"></i></button>
+            <div className="voteSection">
+              {/* <button onClick={this.upvoteQuestion.bind(this)} className="voteBtn">
+                <i className="fa fa-arrow-up voteLogo"></i>
+              </button> */}
+                
+              <svg onClick={this.upvoteQuestion.bind(this)} className="svg-icon m0 iconArrowUpLg voteBtn" width="36" height="36" viewBox="0 0 36 36">
+                  <path d="M2 26h32L18 10 2 26z" className="voteBtnIcon"></path>
+                </svg>
+              <br /> {this.questionVoteCount()} {/*this.questionVoteCount() === 1 ? "vote" : "votes"*/} <br/>
+              {/* <button onClick={this.downvoteQuestion.bind(this)} className="voteBtn">
+                <i className="fa fa-arrow-down voteLogo"></i>
+              </button> */}
+              <svg onClick={this.downvoteQuestion.bind(this)} aria-hidden="true" className="svg-icon m0 iconArrowDownLg voteBtn" width="36" height="36" viewBox="0 0 36 36">
+                  <path d="M2 10h32L18 26 2 10z" className="voteBtnIcon"></path>
+                </svg>
             </div>
-            <div>
+            <div className="questionBodyContent">
+              <div>
               {body}
+              </div>
+              <div className="questionInfoContainer">
+                <div className="questionInfo">
+                  {/* asked: {question.created_at ? question.created_at.toString() : undefined} <br /> */}
+                  asked: {this.timeText(new Date(created_at))} <br />
+                  {/* updated: {question.updated_at ? question.updated_at.toString() : undefined} <br /> */}
+                  updated: {this.timeText(new Date(updated_at))} <br />
+                  <div className="userNameContainer">
+                    <img src="/assets/userIcon.png" alt="" className="userIcon" />
+                    <div className="userName">
+                      &nbsp; {username} <br />
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
+          <br />
+          <br/>
+          <hr className="separator" />
           <div>
-            <ul>
+            <ul className="answerListItems">
             {answers}
             </ul>
           </div>

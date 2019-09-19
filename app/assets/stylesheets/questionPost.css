@@ -4,12 +4,14 @@
      font-size: 20px;
      padding: 20px;
      width: 100%;
-     border: 3px solid gray;
+     border: none;
 }
 
 .voteBtn {
      width: 42px;
      height: 42px;
+     border:none;
+     cursor: pointer;
 }
 
 .voteLogo {
@@ -18,8 +20,66 @@
 
 .questionBody {
      display: flex;
+     margin-left: 10px;
 }
 
 .entireAnswerPost {
      display: flex; 
+}
+
+.questionBasicInfo {
+     font-family: Arial,"Helvetica Neue",Helvetica,sans-serif;
+  color: #848d95;
+     margin-left: 5px;
+  font-size: 13px;
+}
+
+.mid {
+     margin-left: 20px;
+}
+
+.questionTitle {
+     display: block;
+  font-size: 2em;
+  margin-top: 0.67em;
+  margin-bottom: 0.67em;
+
+  margin-right: 0;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.separator {
+     margin-top: 10px;
+}
+
+
+.answerListItems {
+     padding-left: 0;
+     list-style: none;
+}
+
+.voteBtnIcon{
+    fill: #bbc0c4;
+transform:origin;
+  text-align:center;
+}
+
+.questionBodyContent {
+     margin-left: 10px;
+     width:100%;
+}
+
+.voteSection {
+  text-align:center;
+
+}
+
+.answerSection {
+     width:88%;
+}
+
+.answerInfo {
+     float: right;
+     font-family: Arial,"Helvetica Neue",Helvetica,sans-serif;
+  color: #848d95;
 }

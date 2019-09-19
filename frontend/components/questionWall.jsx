@@ -7,7 +7,9 @@ import TestComponent from "./testComponent";
 export default class QuestionWall extends React.Component {
   constructor(props) {
     super(props);
-
+    this.state = {
+      selectedPage : 0
+    };
   }
 
   componentDidMount() {
@@ -50,10 +52,32 @@ export default class QuestionWall extends React.Component {
     return resultQuestions;
   }
 
-  questionItems() {
+  timeText(created_at) {
+    let diff = new Date() - created_at;
+    let diffSeconds = Math.ceil(diff / 1000);
+    if (diffSeconds < 60){
+      return `${diffSeconds} seconds ago`;
+    }
+    let diffMinutes = Math.ceil(diffSeconds / 60);
+    if (diffMinutes < 60) {
+      return `${diffMinutes} minutes ago`;
+    }
+
+    let diffHours = Math.ceil(diffMinutes / 60);
+    if (diffHours < 24) {
+      return `${diffHours} hours ago`;
+    }
+
+    let diffDays = Math.ceil(diffHours * 24);
+    return `${diffDays} days ago`;
+  }
+
+  questionItems(selectedPage) {
+
     let questions = Object.values(this.filterQuestions(this.props.questions)).sort((a,b) => {
       return b.updated_at - a.updated_at;
     });
+    questions = questions.slice(this.state.selectedPage * 5, this.state.selectedPage * 5 + 5);
     return questions.map(question => {
       let link = `/questions/${question.id}`;
       let username;
@@ -64,34 +88,57 @@ export default class QuestionWall extends React.Component {
 
       let editButton = question.author_id == this.props.session.currentUserId ? 
       (
-          <Link to={`/editQuestion/${question.id}`} >Edit</Link>
+          <Link className="editButton" to={`/editQuestion/${question.id}`} >Edit</Link>
       ) : undefined;
 
       let deleteButton = question.author_id == this.props.session.currentUserId ? 
       (
-        <button onClick={() => {this.deleteQuestion.bind(this)(question.id);}}>
+          <button className="deleteButton" onClick={() => {this.deleteQuestion.bind(this)(question.id);}}>
           Delete
         </button>
       ) : undefined;
       let vote_count = question.upvotes.length - question.downvotes.length;
       let view_count = question.view_count;
-      console.log(view_count);
+
       return (
         <li className="questionItem" key={question.id}>
 
           <div className="questionSummary">
-            {question.answer_count} {question.answer_count === 1 ? "answer" : "answers"} &nbsp;
-            {vote_count} {vote_count === 1 ? "vote" : "votes"} &nbsp;
-            {view_count} {view_count === 1 ? "view" : "views"} &nbsp;
-            <Link to={link}>
-              {question.title}
-            </Link>
-            <div className="questionInfo">
-              asked: {question.created_at ? question.created_at.toString() : undefined} <br />
-              updated: {question.updated_at ? question.updated_at.toString() : undefined} <br />
-              author: {username}
-              {deleteButton}
-              {editButton}
+            <span className="statsContainer">
+              <div className="stats">
+                <div className="votes">
+                  <strong>{vote_count}</strong> <br/>{vote_count === 1 ? "vote" : "votes"} &nbsp;
+                </div>
+                <div className="answers">
+                  <strong>{question.answer_count}</strong> <br/>{question.answer_count === 1 ? "answer" : "answers"} &nbsp;
+                </div>
+              </div>
+              <div className="views">
+                {view_count} {view_count === 1 ? "view" : "views"} &nbsp;
+              </div>
+            </span>
+            <div className="rightContainer">
+              <div>
+                <Link to={link} className="titleText">
+                  {question.title}
+                </Link>
+              </div>
+              <div className="questionInfoContainer">
+                <div className="questionInfo">
+                  {/* asked: {question.created_at ? question.created_at.toString() : undefined} <br /> */}
+                  asked: {this.timeText(question.created_at)} <br/>
+                  {/* updated: {question.updated_at ? question.updated_at.toString() : undefined} <br /> */}
+                  updated: {this.timeText(question.updated_at)} <br />
+                  <div className="userNameContainer">
+                      <img src="/assets/userIcon.png" alt="" className="userIcon" />
+                    <div className="userName">
+                      &nbsp; {username} <br/>
+                    </div>
+                  </div>
+                  {deleteButton}
+                  {editButton}
+                </div>
+              </div>
             </div>
           </div>
 
@@ -100,9 +147,31 @@ export default class QuestionWall extends React.Component {
     });
   }
 
-  render() {
+  changePage(pageNumber) {
+    this.setState({
+      selectedPage: pageNumber
+    })
+  }
 
-    let questions = this.questionItems();
+  render() {
+    let pagination = <div>Notworking</div>;
+    if (Object.keys(this.props.questions).length > 0){
+      let maxPageNumber = Math.ceil(Object.keys(this.props.questions).length / 5);
+      let pageNumbers = new Array(maxPageNumber);
+      for(let i = 0; i < pageNumbers.length; i++){
+        pageNumbers[i] = i;
+      }
+      pagination = (
+        <div className="paginationContainer">
+          <div className="pagination">
+          {(pageNumbers).map((x) => {
+            return (<button key={x} onClick={() => {this.changePage.bind(this)(x) }}>{x}</button>);
+          })}
+          </div>
+        </div>
+      );
+    }
+    let questions = this.questionItems(this.state.selectedPage);
     return (
       <div className="questionWall">
         <SideBar />
@@ -118,6 +187,7 @@ export default class QuestionWall extends React.Component {
           <ul className="questionList">
             {questions}
           </ul>
+          {pagination}
 
         </div>
       </div>

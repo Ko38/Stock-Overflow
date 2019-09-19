@@ -6,7 +6,7 @@ json.body @question.body
 json.author_id @question.author_id
 #json.answers @question.answers
 json.answers do 
-  json.array! @question.answers, :id, :question_id, :body, :author_id, :upvotes, :downvotes
+  json.array! @question.answers, :id, :question_id, :body, :author_id, :upvotes, :downvotes, :created_at
 end
 json.created_at @question.created_at
 json.updated_at @question.updated_at
