@@ -150,7 +150,7 @@ export default class QuestionWall extends React.Component {
   changePage(pageNumber) {
     this.setState({
       selectedPage: pageNumber
-    })
+    }); 
   }
 
   render() {

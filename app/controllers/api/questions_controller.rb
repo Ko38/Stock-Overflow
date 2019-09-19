@@ -24,8 +24,7 @@ class Api::QuestionsController < ApplicationController
   end
 
   def record_view(question_id)
-    user_id = current_user.id
-    View.new(question_id: question_id, user_id: user_id).save
+    View.new(question_id: question_id).save
   end
 
   def show
@@ -34,9 +33,7 @@ class Api::QuestionsController < ApplicationController
     @question = Question.find(id)
     
     if @question
-      if logged_in? 
-        self.record_view(id)
-      end
+      self.record_view(id)
       render :show
     else 
       render json: ["Something's wrong!"], status: 404         

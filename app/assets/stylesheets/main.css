@@ -7,7 +7,8 @@ html, body { height: 100%; width: 100%; margin: 0; }
 
 .body {
   /* display: flex; */
-  height: 100%;
+  /* height: 100%; */
+  overflow: auto;
   width: 100%;
   margin: 0;
   background: #EAEAEA;
@@ -18,18 +19,18 @@ html, body { height: 100%; width: 100%; margin: 0; }
 
 .footer {
   margin: 20px;
-      max-width: 1264px;
+     
     width: 100%;
     margin: 0 auto;
-    margin-top: 40px;
+    margin-top: 200px;
     padding: 32px 12px 12px 12px;
-    display: flex;
-    flex-flow: row wrap;
+
+
     background: #242729;
     height: 200px;
-    position: absolute;
 
-    z-index: 200;
+
+
 }
 
 ul li {

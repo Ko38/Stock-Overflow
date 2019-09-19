@@ -79,11 +79,9 @@ ActiveRecord::Schema.define(version: 2019_09_17_175331) do
   end
 
   create_table "views", force: :cascade do |t|
-    t.integer "user_id", null: false
     t.integer "question_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["question_id", "user_id"], name: "index_views_on_question_id_and_user_id", unique: true
   end
 
 end

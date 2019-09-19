@@ -7,7 +7,8 @@ export default class QuestionPost extends React.Component {
 
     this.state = {
       body: "",
-      editButtonText: "Edit"
+      editButtonText: "Edit",
+      selectedPage: 0
     };
     this.answerTextareas = [];
   } 
@@ -109,6 +110,12 @@ export default class QuestionPost extends React.Component {
     return `${diffDays} days ago`;
   }
 
+  changePage(pageNumber) {
+    this.setState({
+      selectedPage: pageNumber
+    });
+  }
+
   render() {
     let title;
     let created_at;
@@ -119,6 +126,8 @@ export default class QuestionPost extends React.Component {
     let view_count;
     let updated_at;
     let username;
+    let pagination = <div>Notworking</div>;
+    
     if (this.props.question){
       updated_at = this.props.question.updated_at;
       view_count = this.props.question.view_count;
@@ -129,7 +138,35 @@ export default class QuestionPost extends React.Component {
       username = users[author_id].username;
       this.state.question_id = this.props.question.id;
       if (this.props.question.answers){
-        answers = Object.values(this.props.question.answers).map((answer) => {
+        if (Object.keys(this.props.question.answers).length > 0){
+          let maxPageNumber = Math.ceil(Object.keys(this.props.question.answers).length / 5);
+          let pageNumbers = new Array(maxPageNumber);
+          for(let i = 0; i < pageNumbers.length; i++){
+            pageNumbers[i] = i;
+          }
+          pagination = (
+            <div className="paginationContainer">
+              <div className="pagination">
+              {(pageNumbers).map((x) => {
+                return (<button key={x} onClick={() => {this.changePage.bind(this)(x) }}>{x}</button>);
+              })}
+              </div>
+            </div>
+          );
+          if (pageNumbers.length === 1){
+            pagination = undefined;
+          }
+        }
+
+
+
+
+
+        let tempAnswers = Object.values(this.props.question.answers).sort((a,b) => {
+          return new Date(b.created_at) - new Date(a.created_at);
+        });
+        tempAnswers = tempAnswers.slice(this.state.selectedPage*5, this.state.selectedPage*5+5 );
+        answers = tempAnswers.map((answer) => {
           let editButton;
           let deleteButton;
           if (answer.author_id == this.props.session.currentUserId) {
@@ -251,6 +288,7 @@ export default class QuestionPost extends React.Component {
             {answers}
             </ul>
           </div>
+          {pagination}
           {answerForm}
           
         </div>
