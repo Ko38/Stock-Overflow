@@ -170,6 +170,9 @@ export default class QuestionWall extends React.Component {
           </div>
         </div>
       );
+      if (pageNumbers.length === 1){
+        pagination = undefined;
+      }
     }
     let questions = this.questionItems(this.state.selectedPage);
     return (
