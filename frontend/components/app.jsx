@@ -9,6 +9,7 @@ import QuestionPostContainer from "./containers/questionPost_container";
 import HomePage from "./home_page";
 import AskQuestionContainer from "./containers/askQuestion_container";
 import EditQuestionContainer from "./containers/editQuestion_container";
+import Footer from "./footer";
 
 export default (props) => {
   return (
@@ -30,10 +31,7 @@ export default (props) => {
         </Switch>
       </div>
       , 
-      <div className="footer" key="footer">
-
-
-      </div>
+      <Footer key="footer" />    
     ]
   )
 };

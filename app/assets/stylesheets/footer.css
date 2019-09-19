@@ -1,0 +1,29 @@
+.footer {
+  margin: 20px;
+  width: 100%;
+  margin: 0 auto;
+  margin-top: 200px;
+  padding: 32px 12px 12px 12px;
+  background: #242729;
+  height: 200px;
+}
+
+.site-footer {
+  display: flex;
+  color: #f2f3f3;
+  font-family: Arial,"Helvetica Neue",Helvetica,sans-serif;
+  text-align: justify;
+  -ms-text-justify: distribute-all-lines;
+  text-justify: distribute-all-lines;
+  justify-content: center;
+}
+
+.footer-box {
+  width: 200px;
+  height: 125px;
+  vertical-align: top;
+  display: inline-block;
+  *display: inline;
+  zoom: 1;
+
+}

@@ -17,22 +17,6 @@ html, body { height: 100%; width: 100%; margin: 0; }
   margin-bottom: 100px;
 }
 
-.footer {
-  margin: 20px;
-     
-    width: 100%;
-    margin: 0 auto;
-    margin-top: 200px;
-    padding: 32px 12px 12px 12px;
-
-
-    background: #242729;
-    height: 200px;
-
-
-
-}
-
 ul li {
   list-style: none;
 }
