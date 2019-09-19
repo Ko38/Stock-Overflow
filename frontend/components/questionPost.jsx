@@ -126,7 +126,7 @@ export default class QuestionPost extends React.Component {
     let view_count;
     let updated_at;
     let username;
-    let pagination = <div>Notworking</div>;
+    let pagination;
     
     if (this.props.question){
       updated_at = this.props.question.updated_at;
