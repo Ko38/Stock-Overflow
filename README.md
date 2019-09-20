@@ -1,24 +1,7 @@
-# README
+# Stock Overflow README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Stock Overflow is a place where developers could ask and answer questions related to coding.
 
-Things you may want to cover:
+![alt text](demo.png "Title")
 
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+Stock Overflow is a Stack Overflow Clone.
