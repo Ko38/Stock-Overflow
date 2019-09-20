@@ -45,7 +45,7 @@ export default class QuestionWall extends React.Component {
     let resultQuestions = {};
 
     for( let question of Object.values(questions)) {
-      if (question.body.includes(searchText) || question.title.includes(searchText)){
+      if (question.body.includes(searchText.toLowerCase()) || question.title.includes(searchText)){
         resultQuestions[question.id] = question;
       }
     }
@@ -68,8 +68,18 @@ export default class QuestionWall extends React.Component {
       return `${diffHours} hours ago`;
     }
 
-    let diffDays = Math.ceil(diffHours * 24);
-    return `${diffDays} days ago`;
+    let diffDays = Math.ceil(diffHours / 24);
+    if (diffDays < 30) {
+      return `${diffDays} days ago`;
+    }
+
+    let diffMonths = Math.ceil(diffDays / 30)
+    // if (diffMonths < 12) {
+      return `${diffMonths} months ago`;
+    // }
+
+    // let diffYears = Math.ceil(diffMonths / 12);
+    // return `${diffYears} years ago`;
   }
 
   questionItems(selectedPage) {
@@ -126,9 +136,9 @@ export default class QuestionWall extends React.Component {
               <div className="questionInfoContainer">
                 <div className="questionInfo">
                   {/* asked: {question.created_at ? question.created_at.toString() : undefined} <br /> */}
-                  asked: {this.timeText(question.created_at)} <br/>
+                  asked {this.timeText(question.created_at)} <br/>
                   {/* updated: {question.updated_at ? question.updated_at.toString() : undefined} <br /> */}
-                  updated: {this.timeText(question.updated_at)} <br />
+                  updated {this.timeText(question.updated_at)} <br />
                   <div className="userNameContainer">
                       <img src="/assets/userIcon.png" alt="" className="userIcon" />
                     <div className="userName">
@@ -176,7 +186,7 @@ export default class QuestionWall extends React.Component {
     }
     let questions = this.questionItems(this.state.selectedPage);
     return (
-      <div className="questionWall">
+      <div className="questionWall robotoFont">
         <SideBar />
       
         <div className="mid">

@@ -28,19 +28,19 @@ export default class SessionForm extends React.Component {
     return (
       <form className="formBody" onSubmit={this.handleSubmit.bind(this)}>
         <label>
-          <b>Username:</b>
+          <b className="robotoFont">Username:</b>
           <input type="text" onChange={this.handleInput.bind(this)("username")} />
         </label> <br/>
         <label>
-          <b>Email:</b>
+          <b className="robotoFont">Email:</b>
           <input type="text" onChange={this.handleInput.bind(this)("email")} />
         </label> <br />
         <label>
-          <b>Password:</b>
+          <b className="robotoFont">Password:</b>
           <input type="password" onChange={this.handleInput.bind(this)("password")} />
         </label> <br />
         
-        <input type="submit" value="Sign Up"></input>
+        <input type="submit" value="Sign Up" className="robotoFont"></input>
       </form>
     );
   }

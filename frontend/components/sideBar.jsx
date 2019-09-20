@@ -8,7 +8,7 @@ class SideBar extends React.Component {
 
   render() {
     return(
-      <div className="sidenav">
+      <div className="sidenav robotoFont">
         <Link className="sideNavLinkText" to="/">Home</Link> <br/>
         <div className="publicText">PUBLIC</div>
 

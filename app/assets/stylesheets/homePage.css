@@ -35,6 +35,7 @@
   padding-right: 29%;
   transform: skew(0deg, 1.17deg);
   font-size: 28px;
+  font-family: "Roboto";
 }
 
 .developerHeader {
@@ -56,6 +57,7 @@
   padding-left:29%;
   padding-right: 29%;
   font-size: 18px;
+  font-family: "Roboto";
 }
 
 .homePageContainer {

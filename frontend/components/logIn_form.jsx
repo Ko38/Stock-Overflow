@@ -41,17 +41,17 @@ export default class LogInForm extends React.Component {
   render() {
     return (
       <form className="formBody" onSubmit={this.handleSubmit.bind(this)}>
-        <label> <b>Username/Email:</b>
+        <label className="robotoFont"> <b>Username/Email:</b>
           <input type="text" onChange={this.handleInput.bind(this)("usernameOrEmail")} value={this.state.usernameOrEmail}/>
         </label> <br/>
         <label>
-          <b> Password: </b>
-          <input type="password" onChange={this.handleInput.bind(this)("password")} value={this.state.password}/>
+          <b className="robotoFont"> Password: </b>
+          <input  type="password" onChange={this.handleInput.bind(this)("password")} value={this.state.password}/>
         </label> <br />
-        <input type="submit" value="Log In" />
+        <input className="robotoFont" type="submit" value="Log In" />
         <br />
         <label>{this.state.errorMessage}</label>
-        <button onClick={this.fillDemoUser.bind(this)} className="demoBtn">Log In as Demo User</button>
+        <button onClick={this.fillDemoUser.bind(this)} className="demoBtn robotoFont">Log In as Demo User</button>
       </form>
     );
   }

@@ -54,6 +54,7 @@
   height: 80%;
   weight: 100%;
   font-size: 20px;
+  font-family: "Roboto";
 }
 
 
@@ -83,7 +84,7 @@
 .welcomeText {
   padding: 10px 10px 10px 10px;
   margin-top: 5px;
-
+  font-family: "Roboto";
 }
 
 .navBar ul {
@@ -128,6 +129,7 @@
   align-items: center;
   width: 36px;
   font-size: 28px;
+  text-decoration: none;
 }
 
 .aButton {
@@ -140,6 +142,7 @@
   font-size: 20px;
   vertical-align: middle;
   padding: 14px 16px;
+  font-family: "Roboto";
 }
 
 @media screen and (max-width: 880px) {

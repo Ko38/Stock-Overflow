@@ -92,7 +92,7 @@ export default class QuestionPost extends React.Component {
   timeText(created_at) {
     let diff = new Date() - created_at;
     let diffSeconds = Math.ceil(diff / 1000);
-    if (diffSeconds < 60) {
+    if (diffSeconds < 60){
       return `${diffSeconds} seconds ago`;
     }
     let diffMinutes = Math.ceil(diffSeconds / 60);
@@ -105,8 +105,18 @@ export default class QuestionPost extends React.Component {
       return `${diffHours} hours ago`;
     }
 
-    let diffDays = Math.ceil(diffHours * 24);
-    return `${diffDays} days ago`;
+    let diffDays = Math.ceil(diffHours / 24);
+    if (diffDays < 30) {
+      return `${diffDays} days ago`;
+    }
+
+    let diffMonths = Math.ceil(diffDays / 30)
+    // if (diffMonths < 12) {
+      return `${diffMonths} months ago`;
+    // }
+
+    // let diffYears = Math.ceil(diffMonths / 12);
+    // return `${diffYears} years ago`;
   }
 
   changePage(pageNumber) {
@@ -126,7 +136,7 @@ export default class QuestionPost extends React.Component {
     let updated_at;
     let username;
     let pagination;
-    
+    let totalAnswerCount = 0;
     if (this.props.question){
       updated_at = this.props.question.updated_at;
       view_count = this.props.question.view_count;
@@ -162,8 +172,9 @@ export default class QuestionPost extends React.Component {
 
 
         let tempAnswers = Object.values(this.props.question.answers).sort((a,b) => {
-          return new Date(b.created_at) - new Date(a.created_at);
+          return new Date(a.created_at) - new Date(b.created_at);
         });
+        totalAnswerCount = tempAnswers.length;
         tempAnswers = tempAnswers.slice(this.state.selectedPage*5, this.state.selectedPage*5+5 );
         answers = tempAnswers.map((answer) => {
           let editButton;
@@ -197,7 +208,7 @@ export default class QuestionPost extends React.Component {
                   </textarea> <br/>
                   <div className="answerInfo">
                   {/* answered by {users[answer.author_id] ? users[answer.author_id].username : undefined} */}
-                    answered: {this.timeText(new Date(answer.created_at))} <br />
+                    answered {this.timeText(new Date(answer.created_at))} <br />
                     <div className="userNameContainer">
                       <img src="/assets/userIcon.png" alt="" className="userIcon" />
                       <div className="userName">
@@ -219,7 +230,7 @@ export default class QuestionPost extends React.Component {
       
     let answerForm = this.props.session.currentUserId ? (
       <form onSubmit={this.onSubmit.bind(this)}>
-        <label>Your Answer:
+        <label className="robotoFont">Your Answer:
               <textarea className="bodyTextArea" onChange={this.onInputChange.bind(this)("body")}></textarea>
         </label>
         <input type="submit" value="Post Your Answer" />
@@ -259,16 +270,16 @@ export default class QuestionPost extends React.Component {
                   <path d="M2 10h32L18 26 2 10z" className="voteBtnIcon"></path>
                 </svg>
             </div>
-            <div className="questionBodyContent">
+            <div className="questionBodyContent robotoFont">
               <div>
               {body}
               </div>
               <div className="questionInfoContainer">
                 <div className="questionInfo">
                   {/* asked: {question.created_at ? question.created_at.toString() : undefined} <br /> */}
-                  asked: {this.timeText(new Date(created_at))} <br />
+                  asked {this.timeText(new Date(created_at))} <br />
                   {/* updated: {question.updated_at ? question.updated_at.toString() : undefined} <br /> */}
-                  updated: {this.timeText(new Date(updated_at))} <br />
+                  {/* updated {this.timeText(new Date(updated_at))} <br /> */}
                   <div className="userNameContainer">
                     <img src="/assets/userIcon.png" alt="" className="userIcon" />
                     <div className="userName">
@@ -283,6 +294,9 @@ export default class QuestionPost extends React.Component {
           <br/>
           <hr className="separator" />
           <div>
+            <div className="answerCount robotoFont">
+              {totalAnswerCount} {totalAnswerCount === 1 ? "Answer" : "Answers"}
+            </div>
             <ul className="answerListItems">
             {answers}
             </ul>
