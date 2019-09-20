@@ -22,8 +22,6 @@ class EditQuestionForm extends React.Component {
   componentDidMount() {
 
     this.props.fetchQuestion(this.props.match.params.questionId).then( (payload) =>{
-      console.log(payload.question);
-
       this.setState({
         title: payload.question.title,
         body: payload.question.body,

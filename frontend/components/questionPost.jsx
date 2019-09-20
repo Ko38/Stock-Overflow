@@ -33,7 +33,6 @@ export default class QuestionPost extends React.Component {
     this.props.answerQuestion(Object.assign({}, this.state)).then((answer) => {
       this.props.history.push(`/questions/${this.props.question.id}`)
     }, (error) => {
-      console.log(error);
     });
   }
 

@@ -53,7 +53,6 @@ const receiveAnswer = (answer) => {
 export const fetchQuestion = (id) => {
   return(dispatch) => {
     return QuestionsUtils.fetchQuestion(id).then((question) => {
-      console.log(question);
       return dispatch(receiveQuestion(question));
     });
   };
