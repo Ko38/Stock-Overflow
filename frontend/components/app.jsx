@@ -10,6 +10,7 @@ import HomePage from "./home_page";
 import AskQuestionContainer from "./containers/askQuestion_container";
 import EditQuestionContainer from "./containers/editQuestion_container";
 import Footer from "./footer";
+import { Link } from "react-router-dom";
 
 export default (props) => {
   return (

@@ -139,6 +139,8 @@ export default class QuestionPost extends React.Component {
     let username;
     let pagination;
     let totalAnswerCount = 0;
+    let questionUpvoted = false;
+    let questionDownvoted = false;
     if (this.props.question){
       updated_at = this.props.question.updated_at;
       view_count = this.props.question.view_count;
@@ -150,6 +152,14 @@ export default class QuestionPost extends React.Component {
         username = users[author_id].username;
       }
       
+      questionUpvoted = this.props.question.upvotes.filter((upvote) => {
+        return upvote.user_id == this.props.session.currentUserId;
+      }).length > 0;
+
+      questionDownvoted = this.props.question.downvotes.filter((downvote) => {
+        return downvote.user_id == this.props.session.currentUserId;
+      }).length > 0;
+
       this.state.question_id = this.props.question.id;
       if (this.props.question.answers){
         if (Object.keys(this.props.question.answers).length > 0){
@@ -193,18 +203,26 @@ export default class QuestionPost extends React.Component {
               <button className="deleteButton" onClick={() => { this.deleteAnswerOnClick.bind(this)(answer.id) }} >Delete</button>
             );
           }
+
+          let answerUpvoted = answer.upvotes.filter((upvote) => {
+            return upvote.user_id == this.props.session.currentUserId;
+          }).length > 0;
+          let answerDownvoted = answer.downvotes.filter((downvote) => {
+            return downvote.user_id == this.props.session.currentUserId;
+          }).length > 0;
+
           return(
             <li key={answer.id} >
               <div className="entireAnswerPost">
                 <div className="voteSection">
                   {/* <button onClick={() => {this.upvoteAnswer.bind(this)(answer)}} className="voteBtn"><i className="fa fa-arrow-up voteLogo"></i></button> */}
                   <svg onClick={() => { this.upvoteAnswer.bind(this)(answer) }} className="svg-icon m0 iconArrowUpLg voteBtn" width="36" height="36" viewBox="0 0 36 36">
-                    <path d="M2 26h32L18 10 2 26z" className="voteBtnIcon"></path>
+                    <path d="M2 26h32L18 10 2 26z" className={`voteBtnIcon ${answerUpvoted ? "voted" : "notVoted"}`}></path>
                   </svg>
                   <br /> {this.answerVoteCount(answer)} {/*this.answerVoteCount(answer) === 1 ? "vote" : "votes"*/} <br />
                   {/* <button onClick={() => {this.downvoteAnswer.bind(this)(answer)}} className="voteBtn"><i className="fa fa-arrow-down voteLogo"></i></button> */}
                   <svg onClick={() => { this.downvoteAnswer.bind(this)(answer) }} aria-hidden="true" className="svg-icon m0 iconArrowDownLg voteBtn" width="36" height="36" viewBox="0 0 36 36">
-                    <path d="M2 10h32L18 26 2 10z" className="voteBtnIcon"></path>
+                    <path d="M2 10h32L18 26 2 10z" className={`voteBtnIcon ${answerDownvoted ? "voted" : "notVoted"}`}></path>
                   </svg>
                 </div>
                 <div className="answerSection">
@@ -264,15 +282,15 @@ export default class QuestionPost extends React.Component {
                 <i className="fa fa-arrow-up voteLogo"></i>
               </button> */}
                 
-              <svg onClick={this.upvoteQuestion.bind(this)} className="svg-icon m0 iconArrowUpLg voteBtn" width="36" height="36" viewBox="0 0 36 36">
-                  <path d="M2 26h32L18 10 2 26z" className="voteBtnIcon"></path>
+              <svg onClick={this.upvoteQuestion.bind(this)} className=" svg-icon m0 iconArrowUpLg voteBtn" width="36" height="36" viewBox="0 0 36 36">
+                <path d="M2 26h32L18 10 2 26z" className={`voteBtnIcon ${questionUpvoted ? " voted" : "notVoted"}`}></path>
                 </svg>
               <br /> {this.questionVoteCount()} {/*this.questionVoteCount() === 1 ? "vote" : "votes"*/} <br/>
               {/* <button onClick={this.downvoteQuestion.bind(this)} className="voteBtn">
                 <i className="fa fa-arrow-down voteLogo"></i>
               </button> */}
               <svg onClick={this.downvoteQuestion.bind(this)} aria-hidden="true" className="svg-icon m0 iconArrowDownLg voteBtn" width="36" height="36" viewBox="0 0 36 36">
-                  <path d="M2 10h32L18 26 2 10z" className="voteBtnIcon"></path>
+                <path d="M2 10h32L18 26 2 10z" className={`voteBtnIcon ${questionDownvoted ? " voted" : "notVoted"}`}></path>
                 </svg>
             </div>
             <div className="questionBodyContent robotoFont">

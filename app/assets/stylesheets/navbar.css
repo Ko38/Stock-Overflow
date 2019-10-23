@@ -9,7 +9,7 @@
   margin: 0;
   z-index: 10;
   overflow: hidden;
-  position: absolute;
+  position: fixed;
 }
 
 
@@ -162,10 +162,58 @@
 .burgerMenuBorder{
   width: 35px;
   height: 5px;
-  background-color: black;
+  background-color: #ababab;
   margin: 6px 0;
 }
 
 .new-search-icon {
   margin-top: 20px;
+}
+
+.search_icon {
+    color: lightgray;
+    position: absolute;
+    transform: translate(10px, 18px);
+    font-size: 1.3rem;
+    z-index: 3;
+}
+
+.fa-search:before {
+    content: "\f002";
+}
+
+.searchInput{
+  text-indent: 20px;
+
+}
+
+.burgerContainer {
+  display: inline-block;
+  cursor: pointer;
+}
+
+.change .bar1 {
+  -webkit-transform: rotate(-45deg) translate(-9px, 6px);
+  transform: rotate(-45deg) translate(-9px, 6px);
+}
+
+.change .bar2 {opacity: 0;}
+
+.change .bar3 {
+  -webkit-transform: rotate(45deg) translate(-8px, -8px);
+  transform: rotate(45deg) translate(-8px, -8px);
+}
+
+.dropdown {
+  position: fixed;
+    top: 65px;
+    left: 0px;
+    width: 250px;
+    background-color: #f7f7f7;
+    z-index: 1000;
+
+}
+
+.invisible {
+  visibility: hidden;
 }

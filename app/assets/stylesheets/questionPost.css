@@ -60,9 +60,17 @@
 
 .voteBtnIcon{
 /* fill:#F48024 ; */
-    fill: #bbc0c4;
+    
 transform:origin;
   text-align:center;
+}
+
+.notVoted {
+fill: #bbc0c4;
+}
+
+.voted {
+     fill:#F48024;
 }
 
 .questionBodyContent {
