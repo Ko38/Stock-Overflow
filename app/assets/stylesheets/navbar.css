@@ -21,6 +21,7 @@
 
 .burger, .rightLi{
   width: 10%;
+  text-align: center;
 }
 
 .burger {
@@ -133,12 +134,11 @@
 }
 
 .aButton {
-  margin-top: 10%;
+  margin-top: 7%;
   padding: 10px 10px 10px 10px;
   border-radius: 10px;
   cursor: pointer;
   height: 30%;
-  width: 60%;
   font-size: 20px;
   vertical-align: middle;
   text-align: center;
