@@ -18,24 +18,30 @@ export default class LogInForm extends React.Component {
     };
   }
 
-  handleSubmit(e) {
-    e.preventDefault();
-     this.props.logInUser(Object.assign({}, this.state))
-      .then( () => { 
+  login(){
+    this.props.logInUser(Object.assign({}, this.state))
+      .then(() => {
         // this.props.history.push("/"); 
       }, (error) => {
-
-        this.setState({errorMessage: error.responseJSON[0]});
+        this.setState({ errorMessage: error.responseJSON[0] });
       });
   }
 
-  fillDemoUser(e) {
+  handleSubmit(e) {
+    e.preventDefault();
+    this.login();
+  }
+
+  fillDemoUserAndLogin(e) {
     e.preventDefault();
     this.setState({
       usernameOrEmail: "DemoUser",
       password: "1234qwer",
       errorMessage: ""
     });
+    setTimeout(() => {
+      this.login();
+    }, 1000);
   }
 
   render() {
@@ -50,8 +56,8 @@ export default class LogInForm extends React.Component {
         </label> <br />
         <input className="robotoFont" type="submit" value="Log In" />
         <br />
-        <label>{this.state.errorMessage}</label>
-        <button onClick={this.fillDemoUser.bind(this)} className="demoBtn robotoFont">Log In as Demo User</button>
+        <label className="error-text">{this.state.errorMessage}</label>
+        <button onClick={this.fillDemoUserAndLogin.bind(this)} className="demoBtn robotoFont">Log In as Demo User</button>
       </form>
     );
   }

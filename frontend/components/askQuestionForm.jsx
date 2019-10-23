@@ -37,14 +37,14 @@ class AskQuestionForm extends React.Component {
           Ask a question
         </div>
           <form onSubmit={this.onSubmit.bind(this)}>
-            <label>Title:
+            <label className="questionWallLabels">Title
               <input type="text" onChange={this.onInputChange.bind(this)("title")}></input>
             </label>
-            <label>Body:
+            <label className="questionWallLabels">Body
               <textarea className="bodyTextArea" onChange={this.onInputChange.bind(this)("body")}></textarea>
             </label>
             <input type="submit" value="Post Your Question"/>
-            <label>{this.state.errorMessage}</label>
+            <label className="error-text">{this.state.errorMessage}</label>
           </form>
         </div>
       </div>

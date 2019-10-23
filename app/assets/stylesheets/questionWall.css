@@ -3,7 +3,7 @@
   /* height: 100%; */
   overflow: auto;
   margin: 0;
-  background: #FFFFFF;
+  background: #f7f7f7;
   display: flex;
 }
 
@@ -114,14 +114,29 @@
   margin-left: 4px;
 }
 
-.editButton {
+.editButton1 {
 text-decoration: none;
   float: right;
   color: #FFF; 
   background-color: #0095ff; 
   border-radius: 8px;
   padding: 8px;
-  font-size: 12px;
+  font-size: 11px;
+      width: 32px;
+    text-align: center;
+    height: 13px;
+}
+
+.editButton2 {
+text-decoration: none;
+  float: right;
+  color: #FFF; 
+  background-color: #0095ff; 
+  border-radius: 8px;
+  padding: 8px;
+
+      width: 50px;
+    text-align: center;
 }
 
 .deleteButton {
@@ -133,6 +148,7 @@ text-decoration: none;
   padding: 8px;
   font-size: 10px;
   cursor: pointer;
+  width: 50px;
 }
 
 .userIcon {

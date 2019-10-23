@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 export default class Footer extends React.Component {
   constructor(props){
@@ -8,11 +9,17 @@ export default class Footer extends React.Component {
   render() {
     return (
       <div className="footer">
-        <img src="/assets/logo.png" alt="" className="logo"/>
+        <Link to="/">
+          <img src="/assets/logo.png" alt="" className="logo" />
+        </Link>
+        
         <div className="site-footer">
-          <div className="footer-box">STOCK OVERFLOW</div>
-          <div className="footer-box">PRODUCTS</div>
-          <div className="footer-box">COMPANY</div>
+          <a href="/" className="reset-links"> <div>STOCK OVERFLOW</div></a>
+          <a href="/" className="reset-links"><div>PRODUCTS</div></a>
+          <a href="/" className="reset-links"><div>COMPANY</div></a>
+         
+          
+          
         </div>
       </div>
     );

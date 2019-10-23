@@ -8,7 +8,8 @@ export default class QuestionWall extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      selectedPage : 0
+      selectedPage : 0,
+      questions: null
     };
   }
 
@@ -82,12 +83,12 @@ export default class QuestionWall extends React.Component {
     // return `${diffYears} years ago`;
   }
 
-  questionItems(selectedPage) {
+  questionItems(selectedPage, questions) {
 
-    let questions = Object.values(this.filterQuestions(this.props.questions)).sort((a,b) => {
-      return b.updated_at - a.updated_at;
-    });
-    questions = questions.slice(this.state.selectedPage * 5, this.state.selectedPage * 5 + 5);
+    // let questions = Object.values(this.filterQuestions(this.props.questions)).sort((a,b) => {
+    //   return b.updated_at - a.updated_at;
+    // });
+    questions = questions.slice(selectedPage * 5, selectedPage * 5 + 5);
     return questions.map(question => {
       let link = `/questions/${question.id}`;
       let username;
@@ -98,7 +99,7 @@ export default class QuestionWall extends React.Component {
 
       let editButton = question.author_id == this.props.session.currentUserId ? 
       (
-          <Link className="editButton" to={`/editQuestion/${question.id}`} >Edit</Link>
+          <Link className="editButton1" to={`/editQuestion/${question.id}`} > Edit </Link>
       ) : undefined;
 
       let deleteButton = question.author_id == this.props.session.currentUserId ? 
@@ -164,9 +165,12 @@ export default class QuestionWall extends React.Component {
   }
 
   render() {
-    let pagination = <div>Notworking</div>;
-    if (Object.keys(this.props.questions).length > 0){
-      let maxPageNumber = Math.ceil(Object.keys(this.props.questions).length / 5);
+    let questions = Object.values(this.filterQuestions(this.props.questions)).sort((a,b) => {
+      return b.updated_at - a.updated_at;
+    });
+    let pagination = <div></div>;
+    if (Object.keys(questions).length > 0){
+      let maxPageNumber = Math.ceil(Object.keys(questions).length / 5);
       let pageNumbers = new Array(maxPageNumber);
       for(let i = 0; i < pageNumbers.length; i++){
         pageNumbers[i] = i;
@@ -184,7 +188,7 @@ export default class QuestionWall extends React.Component {
         pagination = undefined;
       }
     }
-    let questions = this.questionItems(this.state.selectedPage);
+    let questionItems = this.questionItems(this.state.selectedPage, questions);
     return (
       <div className="questionWall robotoFont">
         <SideBar />
@@ -198,7 +202,7 @@ export default class QuestionWall extends React.Component {
           </div>
           
           <ul className="questionList">
-            {questions}
+            {questionItems}
           </ul>
           {pagination}
 

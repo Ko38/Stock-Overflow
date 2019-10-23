@@ -8,7 +8,8 @@ export default class QuestionPost extends React.Component {
     this.state = {
       body: "",
       editButtonText: "Edit",
-      selectedPage: 0
+      selectedPage: 0,
+      errorMessage: ""
     };
     this.answerTextareas = [];
   } 
@@ -33,6 +34,7 @@ export default class QuestionPost extends React.Component {
     this.props.answerQuestion(Object.assign({}, this.state)).then((answer) => {
       this.props.history.push(`/questions/${this.props.question.id}`)
     }, (error) => {
+        this.setState({ errorMessage: error.responseJSON[0] });
     });
   }
 
@@ -144,7 +146,10 @@ export default class QuestionPost extends React.Component {
       title = this.props.question.title;
       created_at = this.props.question.created_at;
       body = this.props.question.body;
-      username = users[author_id].username;
+      if (users[author_id]){
+        username = users[author_id].username;
+      }
+      
       this.state.question_id = this.props.question.id;
       if (this.props.question.answers){
         if (Object.keys(this.props.question.answers).length > 0){
@@ -181,7 +186,7 @@ export default class QuestionPost extends React.Component {
           let deleteButton;
           if (answer.author_id == this.props.session.currentUserId) {
             editButton = (
-              <button className="editButton" onClick={() => { this.editAnswerOnClick.bind(this)(answer.id) }} >{this.state.editButtonText}</button>
+              <button className="editButton2" onClick={() => { this.editAnswerOnClick.bind(this)(answer.id) }} >{this.state.editButtonText}</button>
             );
 
             deleteButton = (
@@ -230,11 +235,11 @@ export default class QuestionPost extends React.Component {
       
     let answerForm = this.props.session.currentUserId ? (
       <form onSubmit={this.onSubmit.bind(this)}>
-        <label className="robotoFont">Your Answer:
+        <label className="robotoFont" className="questionWallLabels">Your Answer
               <textarea className="bodyTextArea" onChange={this.onInputChange.bind(this)("body")}></textarea>
         </label>
         <input type="submit" value="Post Your Answer" />
-        <label>{this.state.errorMessage}</label>
+        <label className="error-text">{this.state.errorMessage}</label>
       </form>
     ) : undefined;
 
