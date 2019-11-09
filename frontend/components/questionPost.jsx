@@ -1,5 +1,6 @@
 import React from "react";
 import SideBar from "./sideBar";
+import RightSideBar from "./rightSideBar";
 
 export default class QuestionPost extends React.Component {
   constructor(props){
@@ -328,6 +329,7 @@ export default class QuestionPost extends React.Component {
           {answerForm}
           
         </div>
+        <RightSideBar />
       </div>
       
     );

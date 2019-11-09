@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import SideBar from "./sideBar";
+import RightSideBar from "./rightSideBar";
 import TestComponent from "./testComponent";
 // import queryString from 'query-string'
 
@@ -207,7 +208,7 @@ export default class QuestionWall extends React.Component {
           {pagination}
 
         </div>
-        <div>he</div>
+        <RightSideBar/>
       </div>
     );
   }
