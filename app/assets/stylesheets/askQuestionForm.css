@@ -4,8 +4,9 @@
     width: 100%;
     border: 3px solid #cccccc;
     padding: 5px;
-    font-family: Tahoma, sans-serif;
     background: #FFFFFF;
+    font-family: arial;
+    font-size: 20px;
 }
 
 .bodyTextArea:focus {
