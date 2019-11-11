@@ -196,7 +196,7 @@ export default class QuestionWall extends React.Component {
       
         <div className="mid">
           <div className="questionHeader">
-            All Questions This is for testing
+            All Questions 
             <Link to="/askquestion" className="askQuestionButton">
               Ask Question
             </Link>
