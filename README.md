@@ -18,11 +18,15 @@ Stock Overflow is a [Stack Overflow](https://https://stackoverflow.com) Clone.
 * Ruby on Rails
   - User authentication
 * React
+  - A Javascript library for building user interfaces.
 * Redux
+  - A Javascript library that manages application state.
 * PostgreSQL
   - Backend Database
 * CSS
-* BCrypt
+
+### BCrypt
+Used BCrypt for encrypting users' passwords.
 ```Ruby
 def password=(password)
     @password = password
@@ -32,4 +36,39 @@ def password=(password)
 def is_password?(password)
   BCrypt::Password.new(self.password_digest).is_password?(password)
 end
+```
+
+### Redux workflow
+Used all the essential parts of Redux such as reducers and thunk.
+```javascript
+import { createStore, applyMiddleware } from 'redux'
+import thunk from 'redux-thunk';
+import rootReducer from './reducers/root_reducer'
+
+const configureStore = (preloadedState = {}) => {
+  return createStore(rootReducer, preloadedState, applyMiddleware(thunk));
+};
+
+export default configureStore;
+```
+
+### Active Record
+Used Active Record for making migrations. Active Record represents the models of the program. The layer of the system responsible for data and logic.
+```Ruby
+class CreateUsers < ActiveRecord::Migration[5.2]
+  def change
+    create_table :users do |t|
+      t.string :username, null: false
+      t.string :password_digest, null: false
+      t.string :session_token, null: false  
+      t.string :email, null: false
+      t.timestamps
+    end
+
+    add_index :users, :username, unique: true
+    add_index :users, :session_token, unique: true
+    add_index :users, :email, unique: true
+  end
+end
+
 ```
