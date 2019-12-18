@@ -47,7 +47,7 @@ export default class QuestionWall extends React.Component {
     let resultQuestions = {};
 
     for( let question of Object.values(questions)) {
-      if (question.body.includes(searchText.toLowerCase()) || question.title.includes(searchText)){
+      if (question.body.includes(searchText.toLowerCase()) || question.title.includes(searchText.toLowerCase())){
         resultQuestions[question.id] = question;
       }
     }

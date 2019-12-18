@@ -18,7 +18,7 @@ export default class Footer extends React.Component {
           <a href="/" className="reset-links"><div>PRODUCTS</div></a>
           <a href="/" className="reset-links"><div>COMPANY</div></a> */}
           <div className="footer-person phillip">
-            <h1 className="footer-name">Phillip Ko</h1>
+            <h1 className="footer-name">By Phillip Ko</h1>
             <div className="footer-icons">
               <a href="https://github.com/Ko38"> <img className="github-logo" src="/assets/github-white.png"></img></a>
               <a href="https://www.linkedin.com/in/phillip-ko-a14818183/"> <img className="github-logo" src="/assets/linkedin-white.png"></img></a>
