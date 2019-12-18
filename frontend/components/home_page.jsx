@@ -21,7 +21,7 @@ class HomePage extends React.Component {
               <p className="headerMessage">
                 We build products that empower developers and connect them to solutions that enable productivity, growth, and discovery.
               </p>
-              <Link to="/questions" className="aButton navLinkBtn">
+              <Link to="/questions" className="aButton navLinkBtn questionWallButton">
                 Question Wall
               </Link>
             </div>
