@@ -14,10 +14,16 @@ export default class Footer extends React.Component {
         </Link>
         
         <div className="site-footer">
-          <a href="/" className="reset-links"> <div>STOCK OVERFLOW</div></a>
+          {/* <a href="/" className="reset-links"> <div>STOCK OVERFLOW</div></a>
           <a href="/" className="reset-links"><div>PRODUCTS</div></a>
-          <a href="/" className="reset-links"><div>COMPANY</div></a>
-         
+          <a href="/" className="reset-links"><div>COMPANY</div></a> */}
+          <div className="footer-person phillip">
+            <h1 className="footer-name">Phillip Ko</h1>
+            <div className="footer-icons">
+              <a href="https://github.com/Ko38"> <img className="github-logo" src="/assets/images/github-white.png"></img></a>
+              <a href="https://www.linkedin.com/in/phillip-ko-a14818183/"> <img className="github-logo" src="/assets/images/linkedin-white.png"></img></a>
+            </div>
+          </div>
           
           
         </div>
