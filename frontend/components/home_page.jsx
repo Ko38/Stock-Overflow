@@ -1,4 +1,5 @@
 import React from "react";
+import {Link} from "react-router-dom";
 
 
 class HomePage extends React.Component {
@@ -20,6 +21,9 @@ class HomePage extends React.Component {
               <p className="headerMessage">
                 We build products that empower developers and connect them to solutions that enable productivity, growth, and discovery.
               </p>
+              <Link to="/questions" className="aButton navLinkBtn">
+                Question Wall
+              </Link>
             </div>
             
             <br/>
